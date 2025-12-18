@@ -1,0 +1,43 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+.vi-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        picture,
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            // filter: brightness(0.7);
+        }
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        text-align: center;
+    }
+}

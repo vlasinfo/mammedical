@@ -1,0 +1,8 @@
+// src/scss/mixins/_rem.scss
+@use "sass:math";
+
+$rem-base: 16px !default;
+
+@function rem($px, $base: $rem-base) {
+  @return math.div($px, $base) * 1rem;
+}

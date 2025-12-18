@@ -1,0 +1,9 @@
+{
+  "name": "inc/hero",
+  "title": "Hero Section",
+  "category": "layout",
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "hero.php"
+  }
+}

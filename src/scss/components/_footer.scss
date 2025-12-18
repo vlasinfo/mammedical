@@ -1,0 +1,9 @@
+@use "mixins/media-query" as * ;
+@use "mixins/rem" as * ;
+@use "mixins/breakpoints" as * ;
+
+.footer {
+    padding: rem(50px) 0;
+    background-color: var(--color-lighter);
+    color: var(--color-text);
+}

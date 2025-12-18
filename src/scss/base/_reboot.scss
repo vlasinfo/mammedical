@@ -1,0 +1,374 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+// ========================================
+// 🧩 Global Reset & Base Styles (fixed)
+// ========================================
+
+// 1. Universal box-sizing
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--base-font-size);
+}
+
+// 2. Root defaults
+body {
+  margin: 0;
+  font-family: var(--font-general);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  color: var(--color-text);
+}
+
+// 3. Elements
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: var(--border-width, 1px) solid;
+  opacity: 0.25;
+}
+
+p {
+  margin: 0;
+  &:not(:last-child) {
+    margin-bottom: var(--paragraph-margin-bottom, 1rem);
+  }
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+  text-decoration-skip-ink: none;
+}
+
+address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+
+// Lists
+ol,
+ul {
+  padding-left: 2rem;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+// Typography
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+}
+
+blockquote {
+  margin: 0 0 16px;
+  padding: 24px 32px;
+  border-radius: var(--card-border-radius, 8px);
+  background: var(--card-bg, #222);
+  color: var(--card-color, #fff);
+  border: var(--card-border-width, 1px) solid var(--card-border-color, #333);
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small,
+.small {
+  font-size: 0.875em;
+}
+
+mark,
+.mark {
+  padding: 0.1875em;
+  color: var(--highlight-color, #fff);
+  background-color: var(--highlight-bg, #ff0);
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+// Links
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: var(--transition); 
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+a:not([href]):not([class]),
+a:not([href]):not([class]):hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Code & pre
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-monospace, monospace);
+  font-size: 1em;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: 0.875em;
+}
+
+code {
+  font-size: 0.875em;
+  color: #eb5160;
+  word-wrap: break-word;
+}
+
+a > code {
+  color: inherit;
+}
+
+kbd {
+  padding: 0.1875rem 0.375rem;
+  font-size: 0.875em;
+  color: var(--body-bg, #000);
+  background-color: var(--body-color, #fff);
+  border-radius: 0.25rem;
+}
+
+kbd kbd {
+  padding: 0;
+  font-size: 1em;
+}
+
+// Media
+figure { margin: 0 0 1rem; }
+
+img,
+svg {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+// Tables
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+caption {
+  padding: 0.5rem 0;
+  text-align: left;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border: 0 solid currentColor;
+}
+
+// Forms
+label {
+  display: inline-block;
+}
+
+button {
+  border-radius: 0;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  appearance: button; 
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+
+  @media (min-width: 1200px) {
+    font-size: 1.5rem;
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: var(--scrollbar-width, 8px);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 9999px;
+}
+
+// Selection
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+// Misc
+iframe {
+  border: 0;
+}
+
+summary {
+  cursor: pointer;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+html.is-loading,
+body.is-loading {
+  overflow: hidden;
+  height: 100%;
+}
+
+.hidden {
+    position: absolute;
+    display: block;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;  
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width-xl);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: rem(16px);
+    padding-right: rem(16px);
+}
+
+header {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
+}
+
+.hide-mobile {
+  display: none !important;
+
+  @include media-query-min(1348px) {
+    display: block !important;
+  }
+} 
+
+.show-mobile {
+  display: block !important;
+
+  @include media-query-min(1348px) {
+    display: none !important;
+  }
+} 
+
+
+.body-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 995;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.5);
+    transition: 0.45s ease-in-out;
+    backdrop-filter: blur(rem(1px));
+    @include hide;
+}
+
+.sidebar-open .body-overlay {
+  @include show;
+}
+

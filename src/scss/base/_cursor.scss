@@ -1,0 +1,27 @@
+#magic-cursor {
+    position: absolute;
+    display: none;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    top: 0;
+    left: 0
+}
+
+.vi-cursor #magic-cursor {
+  display: block;
+}
+
+#ball {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    border-radius: 50%;
+    color: #fff0;
+    justify-content: center;
+    mix-blend-mode: difference;
+    background-color: var(--color-accent)!important
+}

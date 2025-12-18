@@ -1,0 +1,179 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  transform-origin: 0 0;
+  backdrop-filter: blur(rem(32px));
+  background: hsla(0, 0%, 100%, .1);
+  box-shadow: 0 1.25rem 1.875rem -.5rem rgba(19, 19, 22, .1);
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(44px) rem(32px);
+  }
+
+  &__logo {
+
+    margin: 0 auto 0 0;
+
+    &-link {
+      font-size: rem(24px);
+      font-weight: 700;
+      color: var(--color-text);
+      text-decoration: none;
+      display: block;
+      margin-top: rem(-19px);
+
+      svg {
+        width: rem(260px);
+        height: auto;
+      }
+    }
+
+  }
+
+  &__nav {
+
+    position: absolute;
+    z-index: 101;
+    height: rem(22px);
+    width: auto;
+
+    .nav__list {
+      display: flex;
+      gap: rem(25px);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__link {
+      font-family: var(--font-secondary);
+      font-size: rem(26px);
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color var(--transition);
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  &__icons {
+    display: flex;
+    gap: rem(32px);
+  }
+
+  &__icon {
+    font-size: rem(20px);
+    transition: transform var(--transition), color var(--transition);
+    svg {
+      width: rem(34px);
+      height: rem(34px);
+    }
+
+    &:hover {
+      color: var(--color-accent);
+      transform: scale(1.15);
+    }
+  }  
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+
+    span {
+      width: 26px;
+      height: 3px;
+      background: var(--color-text);
+      border-radius: rem(2px);
+      transition: background var(--transition);
+    }
+  }
+}
+
+// --- MOBILE NAV ---
+@media (max-width: 768px) {
+  .header__nav { 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    transform: translateY(-120%);
+    padding: rem(20px) 0;
+    transition: transform 0.45s ease;
+
+    .nav__list {
+      flex-direction: column;
+      gap: rem(16px);
+    }
+  }
+
+  .header__nav.active {
+    transform: translateY(0);
+  }
+
+  .header__burger {
+    display: flex;
+  }
+}
+
+
+
+
+.hover-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+
+  // Text container controls height and overflow
+  .text {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; // ensures sliding chars are clipped vertically
+    vertical-align: top;
+    padding-right: 7px;
+  }
+
+  .initial,
+  .hover {
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  // Place hover text directly under initial text
+  .hover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 800;
+
+    > div {
+      font-weight: bold;
+    }
+  }
+}
+
+/* Touch devices: disable hover animation to avoid stuck states */
+@media (hover: none) and (pointer: coarse) {
+  .hover-link {
+    .hover { display: none; }
+  }
+}

@@ -1,0 +1,30 @@
+@use "./../mixins/rem" as *;
+
+// Root variables
+$font-size: rem(16px);
+$line-height: rem(24px);
+$container-width-xl: rem(1600px);
+
+:root {
+  --base-font-size: 16px;
+
+  --font-general: "Montserrat", sans-serif;
+  --font-secondary: "HelveticaNeueCyr", Arial, sans-serif;
+
+  --color-text: #3a0b14;
+  --color-text-light: #baa38f;
+  --color-accent: #63121a;
+  --color-accent-light: #761b24;
+  --color-border: #E7E7E1;
+
+  --transition: 0.24s;
+
+  --font-size: #{$font-size};
+  --line-height: #{$line-height};
+  --font-weight: 400;
+
+  --cubic: cubic-bezier(0.42, 0.0, 0.58, 1.0);
+  --cut-size: 30px;
+
+  --container-width-xl: #{$container-width-xl};
+}
