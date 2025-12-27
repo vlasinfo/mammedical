@@ -2,23 +2,29 @@
 @use "mixins/includes" as * ;
 @use "mixins/media-query" as * ;
 
+.is-scrolled {
+
+  .header {
+    box-shadow: 0 rem(10px) rem(20px) rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.5rem);
+    padding: rem(24px) rem(32px);
+  } 
+ 
+}
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-
-  transform-origin: 0 0;
-  backdrop-filter: blur(rem(32px));
-  background: hsla(0, 0%, 100%, .1);
-  box-shadow: 0 1.25rem 1.875rem -.5rem rgba(19, 19, 22, .1);
+  padding: rem(44px) rem(32px);
+  transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition);
 
   &__container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: rem(44px) rem(32px);
   }
 
   &__logo {
@@ -156,6 +162,8 @@
     display: inline-block;
     white-space: nowrap;
     will-change: transform;
+    overflow: hidden;
+    line-height: 1.01;
   }
 
   // Place hover text directly under initial text

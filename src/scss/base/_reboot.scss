@@ -340,8 +340,8 @@ header {
 
 .hide-mobile {
   display: none !important;
-
-  @include media-query-min(1348px) {
+ 
+  @include mq(min, 1348px) {
     display: block !important;
   }
 } 
@@ -349,7 +349,7 @@ header {
 .show-mobile {
   display: block !important;
 
-  @include media-query-min(1348px) {
+  @include mq(min, 1348px) {
     display: none !important;
   }
 } 

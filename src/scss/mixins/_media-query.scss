@@ -1,19 +1,100 @@
-/*----------------------------------------*/
-/*  Media Query CSS START
-/*----------------------------------------*/
-@mixin media-query-min( $length ) {
-    @media screen and (min-width: $length)  {
-        @content;
-    }
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+// ----------------------------------------
+// Breakpoints
+// ----------------------------------------
+$breakpoints: (
+  xs: 360px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1360px,
+  xl: 1920px,
+  xxl: 2400px
+) !default;
+
+$mq-epsilon: 0.02px !default;
+
+// ----------------------------------------
+// Breakpoint getter
+// ----------------------------------------
+@function bp($key) {
+  @if map.has-key($breakpoints, $key) {
+    @return map.get($breakpoints, $key);
+  }
+
+  @error "Unknown breakpoint `#{$key}`. Available: #{map.keys($breakpoints)}";
 }
 
-@mixin media-query( $length ) {
-    @media (max-width: $length) {
-        @content;
+// ----------------------------------------
+// Resolve any size
+// ----------------------------------------
+@function resolve-size($value) {
+  @if meta.type-of($value) == "number" {
+    @return $value;
+  } @else if meta.type-of($value) == "string" or meta.type-of($value) == "keyword" {
+    $value-str: "#{$value}";
+    $len: string.length($value-str);
+
+    @if $len >= 2 and string.slice($value-str, $len - 1, $len) == "px" {
+      @return $value-str;
+    } @else {
+      @return bp($value);
     }
+  } @else {
+    @return bp($value);
+  }
 }
-@mixin short-query( $min , $max ) {
-    @media only screen and (min-width: $min) and (max-width: $max) {
-        @content;
+
+// ----------------------------------------
+// Media query mixin
+// ----------------------------------------
+@mixin mq($type, $from, $to: null) {
+  $min-width: resolve-size($from);
+
+  @if $type == min {
+    @media (min-width: $min-width) {
+      @content;
     }
+
+  } @else if $type == max {
+    @media (max-width: calc(#{$min-width} - #{$mq-epsilon})) {
+      @content;
+    }
+
+  } @else if $type == between {
+    @if $to == null {
+      @error "`between` requires two breakpoints";
+    }
+    $max-width: resolve-size($to);
+    @media (min-width: $min-width) and (max-width: calc(#{$max-width} - #{$mq-epsilon})) {
+      @content;
+    }
+
+  } @else {
+    @error "Unknown mq type `#{$type}`. Use min | max | between.";
+  }
 }
+
+
+// ----------------------------------------
+
+ 
+// xs ≥ 360px
+// @include mq(min, xs) {}
+
+// sm ≥ 768px
+// @include mq(min, sm) {}
+
+// md ≥ 1024px
+// @include mq(min, md) {}
+
+// lg ≥ 1360px
+// @include mq(min, lg) {}
+
+// xl ≥ 1920px
+// @include mq(min, xl) {}
+
+// xxl ≥ 2560px
+//@include mq(min, xxl) {}
