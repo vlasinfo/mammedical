@@ -64,10 +64,17 @@
 
     .nav__link {
       font-family: var(--font-secondary);
-      font-size: rem(26px);
+      font-size: rem(20px);
+      line-height: 1.02;
       color: var(--color-text);
       text-decoration: none;
       transition: color var(--transition);
+
+      @include mq(min, lg) {
+        font-size: rem(26px);
+
+      }
+
 
       &:hover {
         color: var(--color-accent);
@@ -153,7 +160,6 @@
     position: relative;
     display: inline-block;
     overflow: hidden; // ensures sliding chars are clipped vertically
-    vertical-align: top;
     padding-right: 7px;
   }
 
@@ -163,7 +169,6 @@
     white-space: nowrap;
     will-change: transform;
     overflow: hidden;
-    line-height: 1.01;
   }
 
   // Place hover text directly under initial text
