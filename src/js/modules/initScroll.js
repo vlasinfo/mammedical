@@ -1,6 +1,6 @@
 export default function initScroll() {
   const scroll_class = 'is-scrolled';
-  const scroll_offset = 10;
+  const scroll_offset = 100;
 
   const onScroll = () => {
     document.body.classList.toggle(

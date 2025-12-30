@@ -37,7 +37,8 @@ const paths = {
       'node_modules/gsap/dist/ScrollTrigger.min.js',
       'node_modules/gsap/dist/CustomEase.min.js',
       'node_modules/gsap/dist/ScrollToPlugin.min.js',
-      'node_modules/gsap/dist/SplitText.js', 
+      'node_modules/gsap/dist/SplitText.js',
+      'node_modules/lenis/dist/lenis.min.js',
       'node_modules/pace-js/pace.min.js',
     ]
   }

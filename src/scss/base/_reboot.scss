@@ -13,6 +13,7 @@
 
 html {
   font-size: var(--base-font-size);
+  height: 100%;
 }
 
 // 2. Root defaults
@@ -23,6 +24,11 @@ body {
   font-weight: var(--font-weight);
   line-height: var(--line-height);
   color: var(--color-text);
+  height: 100%;
+}
+
+#smooth-wrapper {
+  overflow: hidden;
 }
 
 // 3. Elements
@@ -371,4 +377,3 @@ header {
 .sidebar-open .body-overlay {
   @include show;
 }
-

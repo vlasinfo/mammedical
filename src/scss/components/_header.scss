@@ -65,14 +65,14 @@
     .nav__link {
       font-family: var(--font-secondary);
       font-size: rem(20px);
-      line-height: 1.02;
+      line-height: 1.04;
       color: var(--color-text);
       text-decoration: none;
       transition: color var(--transition);
 
       @include mq(min, lg) {
         font-size: rem(26px);
-
+        line-height: 1.02;
       }
 
 
