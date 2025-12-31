@@ -16,6 +16,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   z-index: 1000;
   padding: rem(44px) rem(32px);
@@ -23,13 +24,14 @@
 
   &__container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
   &__logo {
 
-    margin: 0 auto 0 0;
+    margin: 0;
 
     &-link {
       font-size: rem(24px);
@@ -47,14 +49,12 @@
 
   }
 
-  &__nav {
-
-    position: absolute;
+  .nav {
     z-index: 101;
     height: rem(22px);
     width: auto;
 
-    .nav__list {
+    &__list {
       display: flex;
       gap: rem(25px);
       list-style: none;
@@ -62,7 +62,11 @@
       padding: 0;
     }
 
-    .nav__link {
+    &__item {
+      display: flex;
+    }    
+
+    &__link {
       font-family: var(--font-secondary);
       font-size: rem(20px);
       line-height: 1.04;
@@ -79,12 +83,15 @@
       &:hover {
         color: var(--color-accent);
       }
+
     }
   }
 
   &__icons {
     display: flex;
+    justify-content: flex-end;
     gap: rem(32px);
+    width: 260px;
   }
 
   &__icon {
@@ -115,6 +122,36 @@
       background: var(--color-text);
       border-radius: rem(2px);
       transition: background var(--transition);
+    }
+  }
+}
+
+.header {
+  max-width: 100%;
+  margin: 0 auto; 
+  transition: all var(--transition);
+  gap: rem(10px);
+  transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
+}
+
+.is-scrolled {
+  .header {
+    --transition: 1s ease;
+    max-width: 1000px;
+    margin-top: 20px;
+    justify-content: center;
+    gap: rem(20px);
+    transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
+
+    &__logo {
+      
+    }
+     &__icons {
+      width: auto;
+    }
+
+    .nav {
+      position: relative;
     }
   }
 }
@@ -157,8 +194,8 @@
 
   // Text container controls height and overflow
   .text {
+    @include flex;
     position: relative;
-    display: inline-block;
     overflow: hidden; // ensures sliding chars are clipped vertically
     padding-right: 7px;
   }
