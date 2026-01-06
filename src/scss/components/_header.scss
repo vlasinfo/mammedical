@@ -4,11 +4,67 @@
 
 .is-scrolled {
 
+
   .header {
-    box-shadow: 0 rem(10px) rem(20px) rgba(0, 0, 0, 0.1);
+    --transition: 1s ease;
+
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.09);
     backdrop-filter: blur(1.5rem);
     padding: rem(24px) rem(32px);
-  } 
+
+    max-width: calc(90vw - rem(100px));
+    margin-top: 20px;
+    justify-content: center;
+    gap: rem(20px);
+    transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
+
+    &__container {
+      justify-content: space-between;
+    }
+
+  .nav {
+      &__link {
+      font-size: rem(18px);
+      line-height: 1.04;
+      transition: color var(--transition), font-size var(--transition), line-height var(--transition);
+
+      @include mq(min, lg) {
+        font-size: rem(20px);
+        line-height: 1.04;
+        transition: color var(--transition), font-size var(--transition), line-height var(--transition);
+      }
+    }
+  }
+    
+
+
+
+  &__logo { 
+
+    &-link {
+
+      svg {
+        transition: width var(--transition);
+        width: rem(180px);
+      }
+    }
+
+  }
+
+  &__icons {
+    transition: width var(--transition);
+    width: rem(180px);
+  }
+
+    &__icon {
+      svg {
+        width: rem(28px);
+        height: rem(28px);
+        transition: width var(--transition), height var(--transition);
+      }
+    }
+
+  }
  
 }
 
@@ -44,9 +100,15 @@
       svg {
         width: rem(260px);
         height: auto;
+        transition: width var(--transition);
       }
     }
 
+  }
+
+  &__icons {
+    transition: width var(--transition);
+    width: rem(260px);
   }
 
   .nav {
@@ -72,7 +134,7 @@
       line-height: 1.04;
       color: var(--color-text);
       text-decoration: none;
-      transition: color var(--transition);
+      transition: color var(--transition), font-size var(--transition), line-height var(--transition);
 
       @include mq(min, lg) {
         font-size: rem(26px);
@@ -100,6 +162,7 @@
     svg {
       width: rem(34px);
       height: rem(34px);
+      transition: width var(--transition), height var(--transition);
     }
 
     &:hover {
@@ -132,28 +195,6 @@
   transition: all var(--transition);
   gap: rem(10px);
   transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
-}
-
-.is-scrolled {
-  .header {
-    --transition: 1s ease;
-    max-width: 1000px;
-    margin-top: 20px;
-    justify-content: center;
-    gap: rem(20px);
-    transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
-
-    &__logo {
-      
-    }
-     &__icons {
-      width: auto;
-    }
-
-    .nav {
-      position: relative;
-    }
-  }
 }
 
 // --- MOBILE NAV ---

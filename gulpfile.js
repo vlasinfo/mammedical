@@ -40,6 +40,7 @@ const paths = {
       'node_modules/gsap/dist/SplitText.js',
       'node_modules/lenis/dist/lenis.min.js',
       'node_modules/pace-js/pace.min.js',
+      'node_modules/snowflake/snowflake.min.js',
     ]
   }
 };
