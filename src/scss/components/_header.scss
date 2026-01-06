@@ -1,175 +1,204 @@
-@use "mixins/rem" as * ;
-@use "mixins/includes" as * ;
-@use "mixins/media-query" as * ;
+@use "mixins/rem" as *;
+@use "mixins/includes" as *;
+@use "mixins/media-query" as *;
 
+// --- SCROLLED HEADER STATE ---
 .is-scrolled {
-
-
   .header {
-    --transition: 1s ease;
-
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.09);
     backdrop-filter: blur(1.5rem);
-    padding: rem(24px) rem(32px);
-
-    max-width: calc(90vw - rem(100px));
-    margin-top: 20px;
+    padding: rem(14px) rem(12px);
+    max-width: calc(100vw - rem(30px));
+    margin-top: 15px;
     justify-content: center;
     gap: rem(20px);
-    transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
+
+    transition:
+      max-width var(--transition-long),
+      margin var(--transition-long),
+      justify-content var(--transition-long),
+      box-shadow var(--transition-long),
+      backdrop-filter var(--transition-long),
+      padding var(--transition-long),
+      background var(--transition-long),
+      gap var(--transition-long);
+
+      @include mq(min, 1140px) {
+        margin-top: 20px;
+        max-width: calc(90vw - rem(100px));
+        padding: rem(24px) rem(32px);
+      } 
 
     &__container {
-      justify-content: space-between;
+      
     }
 
-  .nav {
+    .nav {
       &__link {
-      font-size: rem(18px);
-      line-height: 1.04;
-      transition: color var(--transition), font-size var(--transition), line-height var(--transition);
-
-      @include mq(min, lg) {
-        font-size: rem(20px);
+        font-size: rem(18px);
         line-height: 1.04;
-        transition: color var(--transition), font-size var(--transition), line-height var(--transition);
-      }
-    }
-  }
-    
+        transition: color var(--transition-long), font-size var(--transition-long), line-height var(--transition-long);
 
-
-
-  &__logo { 
-
-    &-link {
-
-      svg {
-        transition: width var(--transition);
-        width: rem(180px);
+        @include mq(min, lg) {
+          font-size: rem(20px);
+          line-height: 1.04;
+        }
       }
     }
 
-  }
-
-  &__icons {
-    transition: width var(--transition);
-    width: rem(180px);
-  }
+    &__logo {
+      &-link {
+        svg {
+          width: rem(180px);
+          transition: width var(--transition-long);
+        }
+      }
+    }
 
     &__icon {
       svg {
         width: rem(28px);
         height: rem(28px);
-        transition: width var(--transition), height var(--transition);
+        transition: width var(--transition-long), height var(--transition-long);
       }
     }
-
   }
- 
 }
 
+// --- BASE HEADER ---
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   width: 100%;
   z-index: 1000;
-  padding: rem(44px) rem(32px);
-  transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition);
+  padding: rem(24px) rem(16px);
+
+  transition:
+    background var(--transition-long),
+    box-shadow var(--transition-long),
+    backdrop-filter var(--transition-long),
+    padding var(--transition-long);
+
+    @include mq(min, 1140px) {
+      margin-top: 20px;
+      padding: rem(24px) rem(32px);
+    }     
 
   &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: rem(30px);
     width: 100%;
   }
 
   &__logo {
-
     margin: 0;
 
     &-link {
+      display: block;
+      margin-top: rem(-14px);
       font-size: rem(24px);
       font-weight: 700;
       color: var(--color-text);
       text-decoration: none;
-      display: block;
-      margin-top: rem(-19px);
+
+      @include mq(min, lg) {
+        margin-top: rem(-19px);
+      }      
 
       svg {
-        width: rem(260px);
+        width: rem(180px);
         height: auto;
-        transition: width var(--transition);
+        transition: width var(--transition-long);
+
+        @include mq(min, lg) {
+          width: rem(260px);
+        }
       }
     }
-
   }
 
   &__icons {
-    transition: width var(--transition);
-    width: rem(260px);
+    transition: width var(--transition-long);
+    display: flex;
+    justify-content: flex-end;
+    gap: rem(18px);
+
+    @include mq(min, 1140px) {
+      gap: rem(32px);
+    }     
+
   }
 
   .nav {
     z-index: 101;
-    height: rem(22px);
     width: auto;
+    display: none;
+
+    @include mq(min, sm) {
+      display: block;
+    }   
 
     &__list {
       display: flex;
-      gap: rem(25px);
+      gap: rem(14px);
       list-style: none;
       margin: 0;
       padding: 0;
+
+      @include mq(min, 1140px) {
+        gap: rem(22px);
+      }        
     }
 
     &__item {
       display: flex;
-    }    
+    }
 
     &__link {
       font-family: var(--font-secondary);
-      font-size: rem(20px);
+      font-size: rem(18px);
       line-height: 1.04;
       color: var(--color-text);
       text-decoration: none;
-      transition: color var(--transition), font-size var(--transition), line-height var(--transition);
+      transition: color var(--transition-long), font-size var(--transition-long), line-height var(--transition-long);
+
+      @include mq(min, 1140px) {
+        font-size: rem(20px);
+      }      
 
       @include mq(min, lg) {
         font-size: rem(26px);
         line-height: 1.02;
       }
 
-
       &:hover {
         color: var(--color-accent);
       }
-
     }
-  }
-
-  &__icons {
-    display: flex;
-    justify-content: flex-end;
-    gap: rem(32px);
-    width: 260px;
   }
 
   &__icon {
     font-size: rem(20px);
-    transition: transform var(--transition), color var(--transition);
+    transition: transform var(--transition-long), color var(--transition-long);
+
     svg {
-      width: rem(34px);
-      height: rem(34px);
-      transition: width var(--transition), height var(--transition);
+      width: rem(28px);
+      height: rem(28px);
+      transition: width var(--transition-long), height var(--transition-long);
+
+      @include mq(min, 1140px) {
+        width: rem(34px);
+        height: rem(34px);
+      } 
     }
 
     &:hover {
       color: var(--color-accent);
       transform: scale(1.15);
     }
-  }  
+  }
 
   &__burger {
     display: none;
@@ -184,25 +213,33 @@
       height: 3px;
       background: var(--color-text);
       border-radius: rem(2px);
-      transition: background var(--transition);
+      transition: background var(--transition-long);
     }
   }
 }
 
+// --- HEADER LAYOUT ---
 .header {
   max-width: 100%;
-  margin: 0 auto; 
-  transition: all var(--transition);
+  margin: 0 auto;
   gap: rem(10px);
-  transition: max-width var(--transition), margin var(--transition), justify-content var(--transition), box-shadow var(--transition), backdrop-filter var(--transition), padding var(--transition), background var(--transition), gap var(--transition);
+
+  transition:
+    max-width var(--transition-long),
+    margin var(--transition-long),
+    justify-content var(--transition-long),
+    box-shadow var(--transition-long),
+    backdrop-filter var(--transition-long),
+    padding var(--transition-long),
+    background var(--transition-long),
+    gap var(--transition-long);
 }
 
 // --- MOBILE NAV ---
 @media (max-width: 768px) {
-  .header__nav { 
+  .header__nav {
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: 100%; left: 0;
     width: 100%;
     background: #fff;
     text-align: center;
@@ -225,15 +262,12 @@
   }
 }
 
-
-
-
+// --- HOVER LINK ---
 .hover-link {
   position: relative;
   display: inline-block;
   text-decoration: none;
 
-  // Text container controls height and overflow
   .text {
     @include flex;
     position: relative;
@@ -249,11 +283,9 @@
     overflow: hidden;
   }
 
-  // Place hover text directly under initial text
   .hover {
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 0; top: 0;
     font-weight: 800;
 
     > div {
@@ -262,9 +294,11 @@
   }
 }
 
-/* Touch devices: disable hover animation to avoid stuck states */
+// --- TOUCH DEVICES ---
 @media (hover: none) and (pointer: coarse) {
   .hover-link {
-    .hover { display: none; }
+    .hover {
+      display: none;
+    }
   }
 }
