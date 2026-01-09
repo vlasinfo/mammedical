@@ -6,20 +6,22 @@ export default function initHeader() {
     ease: "power3.out"
   });
 
-  const burger = document.querySelector(".header__burger");
-  const nav = document.querySelector("nav.nav");
+  // Hamburger
+  const burger = document.querySelector('.header__burger');
+  const body = document.body;
 
-  burger.addEventListener("click", () => {
-    nav.classList.toggle("active");
+  if (burger) {
+    burger.addEventListener('click', () => {
+      const isOpen = burger.classList.toggle('opened');
+      body.classList.toggle('is-opened', isOpen);
 
-    gsap.from(".nav__item", {
-      opacity: 0,
-      y: -20,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: "power2.out"
+      burger.setAttribute('aria-expanded', String(isOpen));
+      burger.setAttribute(
+        'aria-label',
+        isOpen ? 'Close menu' : 'Open menu'
+      );
     });
-  });
+  }
 
   // Smooth scroll
   const navLinks = document.querySelectorAll(".nav__link");

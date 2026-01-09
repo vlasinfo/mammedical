@@ -5,6 +5,7 @@ import initHeader from './modules/initHeader.js';
 import initHover from './modules/initHover.js';
 import initScroll from './modules/initScroll.js';
 import initScrollSmoother from "./modules/initScrollSmoother.js";
+import initButton from "./modules/initButton.js";
 import initSnowflake from "./modules/initSnowflake.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initHero();
     initScroll();
+    initButton();
     initSnowflake(); // сніг запускаємо ТІЛЬКИ після прелоадера
 
     document.removeEventListener('preloaderFinished', onPreloaderFinish);

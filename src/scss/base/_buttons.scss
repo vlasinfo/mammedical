@@ -1,28 +1,104 @@
+@use "mixins/rem" as *;
+@use "mixins/includes" as *;
+@use "mixins/media-query" as *;
 
-.btn {
-    display: inline-block;
-    font-family: var(--font-general);
-    font-weight: 400;
-    font-size: 16px;
-    background: transparent;
-    padding: 9px 26px;
-    color: var(--tp-common-white);
-    border: 1px solid var(--color-text);
-    transition: var(--transition);
+.buttons-wrap {
+    display: flex;
+    gap: rem(16px);
+} 
 
-    &-small {
-        font-size: 14px;
-        padding: 4px 10px;
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-general);
+  font-weight: 400;
+  font-size: 14px;
+
+  padding: 12px 10px;
+  color: #fff;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: rem(3px);
+  transition: font-weight var(--transition), background-color var(--transition), color var(--transition), box-shadow var(--transition);
+
+    @include mq(min, 560px) {
+        font-size: 20px;
+        padding: 16px 26px;
     }
+
+
+
+ &--outline {
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
 
     &:hover {
-        background-color: var(--color-accent);
-        border-color: var(--color-accent);
-        color: #fff;
+     color: var(--color-accent) !important;
+     box-shadow: inset 0 0 0 1px var(--color-accent);
+     transition: font-weight var(--transition), background-color var(--transition), color var(--transition), box-shadow var(--transition);
+     
     }
+    
+ }
 
-    svg {
-        width: 12px;
-        margin-left: 2px;
+ 
+  &--wide {
+    width: 100%;
+  }
+
+  /* текст поверх */
+  > *:not(.button__flair) {
+    position: relative;
+    z-index: 2;
+  }
+
+  &:hover {
+    
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: .2px;
+  }
+
+  svg {
+    width: 12px;
+    margin-left: 4px;
+  }
+
+  &__flair {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+
+    transform: scale(0);
+    will-change: transform, left, top;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 200%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: rgba(118, 27, 36, .6);
+
+      transform: translate(-50%, -50%);
     }
+  }
 }
+
+@media (any-hover: none) and (any-pointer: coarse) {
+  .button--outline:focus {
+    color: white !important;
+  }
+}
+
+
