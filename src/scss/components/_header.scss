@@ -167,6 +167,7 @@
 
     &__item {
       display: flex;
+      will-change: transform, opacity;
     }
 
     &__link {
@@ -194,6 +195,7 @@
 
     &--mobile {
       display: block;
+      overflow: hidden;
 
       .nav__list {
         flex-direction: column;
@@ -258,7 +260,7 @@
     }
 
     &.opened {
-      
+
       .burg1 {
         transform: translate(rem(5.5px), rem(5.5px));
       }

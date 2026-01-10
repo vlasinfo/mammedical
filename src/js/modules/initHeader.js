@@ -1,4 +1,6 @@
-export default function initHeader() {
+export default function initHeader(scope = document) {
+
+  // Header intro
   gsap.from(".header", {
     y: -100,
     opacity: 0,
@@ -6,40 +8,76 @@ export default function initHeader() {
     ease: "power3.out"
   });
 
-  // Hamburger
-  const burger = document.querySelector('.header__burger');
   const body = document.body;
+  const burger = scope.querySelector(".header__burger");
+  const navMobile = scope.querySelector(".nav--mobile");
+  const navItems = navMobile?.querySelectorAll(".nav__item");
 
-  if (burger) {
-    burger.addEventListener('click', () => {
-      const isOpen = burger.classList.toggle('opened');
-      body.classList.toggle('is-opened', isOpen);
+  if (!burger || !navMobile) return;
 
-      burger.setAttribute('aria-expanded', String(isOpen));
-      burger.setAttribute(
-        'aria-label',
-        isOpen ? 'Close menu' : 'Open menu'
-      );
-    });
-  }
+  // Initial state
+  gsap.set(navMobile, { height: 0, overflow: "hidden" });
+  gsap.set(navItems, { opacity: 0, y: 12 });
 
-  // Smooth scroll
-  const navLinks = document.querySelectorAll(".nav__link");
+  // Timeline
+  const menuTL = gsap.timeline({
+    paused: true,
+    defaults: { ease: "power2.out" }
+  });
+
+  menuTL
+    .to(navMobile, {
+      height: "auto",
+      duration: 0.4
+    })
+    .to(navItems, {
+      opacity: 1,
+      y: 0,
+      stagger: 0.08,
+      duration: 0.3
+    }, "-=0.2");
+
+  let isOpen = false;
+
+  burger.addEventListener("click", () => {
+    isOpen ? menuTL.reverse() : menuTL.play();
+    isOpen = !isOpen;
+
+    body.classList.toggle("is-opened", isOpen);
+    burger.classList.toggle("opened", isOpen);
+
+    burger.setAttribute("aria-expanded", String(isOpen));
+    burger.setAttribute(
+      "aria-label",
+      isOpen ? "Close menu" : "Open menu"
+    );
+  });
+
+  // Smooth scroll + close menu
+  const navLinks = scope.querySelectorAll(".nav__link");
+
   navLinks.forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
+
       const targetId = link.getAttribute("href");
       const targetEl = document.querySelector(targetId);
 
       if (targetEl) {
         gsap.to(window, {
           duration: 1,
-          scrollTo: { y: targetEl, offsetY: 50 }, // offset optional
+          scrollTo: { y: targetEl, offsetY: 50 },
           ease: "power2.inOut"
         });
       }
 
-      nav.classList.remove("active");
+      if (isOpen) {
+        menuTL.reverse();
+        isOpen = false;
+        body.classList.remove("is-opened");
+        burger.classList.remove("opened");
+        burger.setAttribute("aria-expanded", "false");
+      }
     });
   });
 }
