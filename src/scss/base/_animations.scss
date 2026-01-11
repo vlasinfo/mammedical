@@ -1,0 +1,12 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+.vi-animate-title {
+    overflow: hidden;
+    div,
+    .char {
+        display: inline-block;
+        will-change: transform;
+    }
+}
