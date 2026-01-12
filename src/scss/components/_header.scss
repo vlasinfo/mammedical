@@ -9,7 +9,7 @@
   .header {
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.09);
     backdrop-filter: blur(1.5rem);
-    padding: rem(14px) rem(12px);
+    padding: rem(14px) 0;
     max-width: calc(100vw - rem(30px));
     margin-top: 15px;
     justify-content: center;
@@ -28,7 +28,7 @@
       @include mq(min, 1140px) {
         margin-top: 20px;
         max-width: calc(90vw - rem(100px));
-        padding: rem(24px) rem(32px);
+        padding: rem(24px) 0;
       } 
 
     &__container {
@@ -67,11 +67,18 @@
   }
 }
 
-// .is-opened {
-//   .header {
-//     bottom: rem(10px);
-//   }
-// }
+.is-opened {
+  .header {
+  
+    @include mq(min, sm) {
+    box-shadow: none;
+    backdrop-filter: blur(0);
+    padding: rem(24px) rem(16px);
+    max-width: 100%;
+    margin-top: 0;
+    }  
+  }
+}
 
 // --- BASE HEADER ---
 .header {
@@ -79,7 +86,7 @@
   top: 0; left: 0; right: 0;
   width: 100%;
   z-index: 1000;
-  padding: rem(24px) rem(16px);
+  padding: rem(24px) 0;
 
   transition:
     background var(--transition-long),
@@ -89,7 +96,7 @@
 
     @include mq(min, 1140px) {
       margin-top: 20px;
-      padding: rem(24px) rem(32px);
+      padding: rem(24px) 0;
     }     
 
   &__container {
@@ -133,6 +140,7 @@
     justify-content: flex-end;
     gap: rem(18px);
     margin-left: auto;
+    width: auto;
 
     @include mq(min, sm) {
       margin-left: 0;
@@ -141,6 +149,10 @@
     @include mq(min, 1140px) {
       gap: rem(32px);
     }     
+
+    @include mq(min, 1460px) {
+      width: rem(260px);
+    }         
 
   }
 
@@ -216,6 +228,9 @@
             margin-bottom: rem(16px); 
         }
       }
+      @include mq(min, sm) {
+        display: none;
+      }  
     }
 
   }

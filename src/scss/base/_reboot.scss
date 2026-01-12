@@ -309,12 +309,34 @@ progress {
 }
 
 h1 {
-  color: var(--color-accent);
   letter-spacing: -4px;
   font-size: 114px;
-  font-weight: 500;
-  line-height: 92px;  
+  font-size: clamp(80px, 11vw, 180px);
+  line-height: clamp(80px, 10vw, 152px);
+  font-weight: 500; 
+  margin: 0 0 30px -10px;
+
+  @include mq(min, 1140px) {
+    margin: 0 0 30px -20px;
+  } 
+
+  .spasing {
+    letter-spacing: 4px;
+  }
 } 
+
+.text-block {
+
+
+  .desc {
+    font-size: 38px;
+    font-size: clamp(12px, 1.841vw, 38px);
+    line-height: clamp(12px, 1.9vw, 38px);   
+    letter-spacing: 6px;
+  }
+
+}
+
 
 html.is-loading,
 body.is-loading {
@@ -336,24 +358,13 @@ body.is-loading {
 }
 
 .container {
-    width: 100%;
-    max-width: var(--container-wid th-xl);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: rem(16px);
-    padding-right: rem(16px);
-}
-
-header {
-  .container {
-    padding-left: 0;
-    padding-right: 0;
-    max-width: 100%;
-  }
-}
-
-.text-block {
-
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    @include mq(min, 2020px) {
+        max-width: calc(2010px - rem(64px));
+    } 
 }
 
 .hide-mobile {

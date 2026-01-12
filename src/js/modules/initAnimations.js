@@ -19,6 +19,22 @@ export default function initAnimations(scope = document) {
       clearProps: 'all'
     });
 
+        /* ======================
+      DESCRIPTION
+    ====================== */
+    const descs = scope.querySelectorAll('.vi-animate-desc');
+
+    gsap.from(descs, {
+      y: 20,
+      opacity: 0,
+      filter: 'blur(6px)',
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: 1.4,
+      stagger: 0.15,
+      clearProps: 'all'
+    });
+
     // auto-cleanup on context revert
     return () => split.revert();
 

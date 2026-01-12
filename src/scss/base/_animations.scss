@@ -10,3 +10,7 @@
         will-change: transform;
     }
 }
+
+.vi-animate-desc {
+  will-change: transform, opacity, filter;
+}
