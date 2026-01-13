@@ -40,11 +40,56 @@
 
     <!-- You can place hero text or content here -->
         <div class="vi-hero__content">
-            <div class="text-block ">
+            
+            <div class="text-block">
                 <h1 class="vi-animate-title"><span class="spasing">MAM</span><br>MEDICAL</h1>
                 <div class="desc vi-animate-desc">Медичний центр жіночого здоровʼя</div> 
             </div>
+
+            <div class="text-with-button-block">
+                <div class="text-col vi-animate-desc">
+                    <p>
+                        Лікуємо з любовʼю, здоровʼя<br>
+                        мам і дітей - наша місія.
+                    </p>
+                </div>
+                <div class="button-col">
+
+                    <button class="hero-cta" aria-label="Записатись на прийом">
+                    <span class="hero-cta__gradient"></span>
+                    <span class="hero-cta__wave"></span>
+                    <span class="hero-cta__text">
+                        Записатись<br>на прийом
+                    </span>
+                    </button>                 
+
+                </div>
+                
+            </div>
+
+            
         </div>
 
     </div>
+</div>
+
+
+<!-- MODAL -->
+<div class="modal" aria-hidden="true">
+  <div class="modal__overlay"></div>
+
+  <div class="modal__window">
+    <button class="modal__close" aria-label="Закрити">×</button>
+
+    <h2 class="modal__title">Запис на прийом</h2>
+
+    <form class="modal__form">
+      <input type="text" placeholder="Ваше імʼя" required />
+      <input type="tel" placeholder="Телефон" required />
+      <input type="email" placeholder="Email" />
+      <button type="submit" class="modal__submit">
+        Надіслати
+      </button>
+    </form>
+  </div>
 </div>

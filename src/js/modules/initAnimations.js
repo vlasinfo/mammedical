@@ -15,7 +15,7 @@ export default function initAnimations(scope = document) {
       duration: 1,
       ease: 'power3.out',
       stagger: 0.05,
-      delay: 0.6,
+      delay: 0.4,
       clearProps: 'all'
     });
 
@@ -30,7 +30,7 @@ export default function initAnimations(scope = document) {
       filter: 'blur(6px)',
       duration: 0.8,
       ease: 'power2.out',
-      delay: 1.4,
+      delay: 1,
       stagger: 0.15,
       clearProps: 'all'
     });

@@ -311,10 +311,10 @@ progress {
 h1 {
   letter-spacing: -4px;
   font-size: 114px;
-  font-size: clamp(80px, 11vw, 180px);
-  line-height: clamp(80px, 10vw, 152px);
+  font-size: clamp(62px, 11vw, 180px);
+  line-height: clamp(60px, 10vw, 152px);
   font-weight: 500; 
-  margin: 0 0 30px -10px;
+  margin: 0 0 10px -10px;
 
   @include mq(min, 1140px) {
     margin: 0 0 30px -20px;
@@ -332,7 +332,32 @@ h1 {
     font-size: 38px;
     font-size: clamp(12px, 1.841vw, 38px);
     line-height: clamp(12px, 1.9vw, 38px);   
-    letter-spacing: 6px;
+    letter-spacing: 4px;
+
+    @include mq(min, 1140px) {
+      letter-spacing: 6px;
+    }     
+
+  }
+
+}
+
+.text-with-button-block {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .text-col {
+    p {
+      font-size: rem(30px);
+      line-height: rem(36px);
+      font-weight: 300;
+    }
+  }
+
+  .button-col {
+    margin-right: 100px;
   }
 
 }
