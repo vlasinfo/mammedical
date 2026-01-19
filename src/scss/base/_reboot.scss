@@ -311,12 +311,16 @@ progress {
 h1 {
   letter-spacing: -4px;
   font-size: 114px;
-  font-size: clamp(62px, 11vw, 180px);
-  line-height: clamp(60px, 10vw, 152px);
+  font-size: clamp(62px, 8vw, 180px);
+  line-height: clamp(60px, 7vw, 152px);
   font-weight: 500; 
-  margin: 0 0 10px -10px;
+  margin: 0 0 10px -6px;
 
-  @include mq(min, 1140px) {
+  @include mq(min, sm) {
+    margin: 0 0 10px -12px;
+  }
+
+  @include mq(min, 1950px) {
     margin: 0 0 30px -20px;
   } 
 
@@ -350,14 +354,20 @@ h1 {
 
   .text-col {
     p {
-      font-size: rem(30px);
-      line-height: rem(36px);
+      font-size: clamp(12px, 1.841vw, 38px);
+      line-height: clamp(12px, 1.9vw, 38px);  
       font-weight: 300;
     }
   }
 
   .button-col {
     margin-right: 100px;
+    display: none;
+
+    @include mq(min, sm) {
+      display: block;
+    }
+
   }
 
 }
@@ -384,9 +394,13 @@ body.is-loading {
 
 .container {
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
     
+    @include mq(min, sm) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
     @include mq(min, 2020px) {
         max-width: calc(2010px - rem(64px));
     } 

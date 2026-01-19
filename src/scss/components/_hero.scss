@@ -10,12 +10,31 @@
     z-index: 1;
 
     &__image {
-        position: absolute;
-        inset: 0;
+        position: relative;
         width: 100%;
         height: 100%;
         overflow: hidden;
         z-index: -1;
+
+        @include flex-center;
+
+        @include mq(min, sm) {
+            position: absolute;
+            inset: 0;         
+            
+            .hero-cta {
+                display: none !important;
+            }
+            
+        }     
+        
+        .hero-cta {
+            display: block;
+            position: absolute;
+            margin: auto;
+            inset: 0;
+            z-index: 1;
+        }
 
         picture,
         img {
@@ -36,9 +55,20 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        height: 100vh;
-        padding: 70px 0;
-        gap: 12vh;
+        justify-content: space-around;
+        height: 100%;
+        padding: rem(88px) 0 0;
+        gap: rem(30px);
+
+        @include mq(min, sm) {
+            padding: rem(140px) 0 rem(50px);
+        }
+
+        @include mq(min, rem(1950px)) {
+            height: 100vh;
+            gap: rem(80px);
+            
+        }
+
     }
-}
+} 
