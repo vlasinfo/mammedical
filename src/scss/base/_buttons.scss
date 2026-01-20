@@ -118,6 +118,12 @@
   isolation: isolate;
   @include flex-center;
 
+  position: absolute;
+  
+  @include mq(min, sm) {
+      position: relative;
+  }  
+
   @include mq(min, lg) {
     width: 276px;
     height: 276px;
@@ -137,9 +143,6 @@
     position: absolute;
     width: 300px;
     height: 300px;
-    left: 50%;
-    top: 65%;
-    transform: translate(-50%, -50%);
     background: radial-gradient(
       circle,
       rgba(255,255,255,0.3),

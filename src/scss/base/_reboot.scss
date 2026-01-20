@@ -361,13 +361,11 @@ h1 {
   }
 
   .button-col {
-    margin-right: 100px;
-    display: none;
+    margin-right: 0;
 
     @include mq(min, sm) {
-      display: block;
+      margin-right: 100px;
     }
-
   }
 
 }

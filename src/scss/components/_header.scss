@@ -22,7 +22,7 @@
       box-shadow var(--transition-long),
       backdrop-filter var(--transition-long),
       padding var(--transition-long),
-      background var(--transition-long),
+      background-color var(--transition-long),
       gap var(--transition-long);
 
       @include mq(min, 1140px) {
@@ -95,7 +95,7 @@
   padding: rem(24px) 0;
 
   transition:
-    background var(--transition-long),
+    background-color var(--transition-long),
     box-shadow var(--transition-long),
     backdrop-filter var(--transition-long),
     padding var(--transition-long);

@@ -34,18 +34,10 @@
         </div>
     </div>
 
-    <div class="vi-hero__image">
-
-        <button class="hero-cta" aria-label="Записатись на прийом">
-        <span class="hero-cta__gradient"></span>
-        <span class="hero-cta__wave"></span>
-        <span class="hero-cta__text">
-            Записатись<br>на прийом
-        </span>
-        </button>           
+    <div class="vi-hero__image">         
 
         <picture>
-            <source 
+            <source
                 type="image/avif"
                 srcset="
                 ../assets/img/hero/hero-480.avif 480w,
@@ -54,9 +46,14 @@
                 ../assets/img/hero/hero-1600.avif 1600w,
                 ../assets/img/hero/hero-1920.avif 1920w
                 "
-                sizes="100vw"
+                sizes="
+                (max-width: 300px) 100vw,
+                (max-width: 1024px) 90vw,
+                1200px
+                "
             >
-            <source 
+
+            <source
                 type="image/webp"
                 srcset="
                 ../assets/img/hero/hero-480.webp 480w,
@@ -65,17 +62,23 @@
                 ../assets/img/hero/hero-1600.webp 1600w,
                 ../assets/img/hero/hero-1920.webp 1920w
                 "
-                sizes="100vw"
+                sizes="
+                (max-width: 300px) 100vw,
+                (max-width: 1024px) 90vw,
+                1200px
+                "
             >
-            <img 
-                src="../assets/img/orig/hero-1920.jpg" 
+
+            <img
+                src="../assets/img/orig/hero-1024.jpg"
                 alt="Hero Image"
                 loading="lazy"
                 decoding="async"
-                width="1920"
-                height="1080"
+                width="1200"
+                height="675"
             >
-        </picture>
+            </picture>
+
     </div>
 </div>
 
