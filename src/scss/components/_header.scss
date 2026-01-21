@@ -270,7 +270,14 @@
     cursor: pointer;
     background: none;
     border: none;
+    position: relative;
 
+    .burg-part {
+      position: absolute;
+      inset: 0;
+      transition: transform var(--transition);   
+      transform: rotate(0);
+    }
 
     .burg1,
     .burg2,
@@ -282,6 +289,10 @@
     }
 
     &.opened {
+
+      .burg-part {
+        transform: rotate(-90deg);
+      }
 
       .burg1 {
         transform: translate(rem(5.5px), rem(5.5px));
