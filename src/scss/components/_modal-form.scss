@@ -42,7 +42,7 @@
     @include mq(min, md) {
       top: 12vh;
       width: 85vw;
-      margin: 0;
+      margin: 0 auto;
       padding: rem(62px) rem(42px) rem(42px);
     }
 
