@@ -161,13 +161,18 @@
     font-family: var(--font-general);
     color: #fff;
     letter-spacing: -.28vw;
-    font-size: 42px;
-    line-height: 48px;
+    font-size: 34px;
+    line-height: 40px;
     font-weight: 400;
 
+    @include mq(min, sm) {
+      font-size: 42px;
+      line-height: 48px;
+    }
+
     @include mq(min, md) {
-      font-size: 4.17vw;
-      line-height: 3.89vw;
+      font-size: 3.17vw;
+      line-height: 2.89vw;
     }    
 
     br {
@@ -182,13 +187,19 @@
 
   &__subtitle {
     color: #fff;
-    font-size: rem(18px);
-    line-height: rem(26px);
+    font-size: rem(16px);
+    line-height: rem(22px);
     font-weight: 300;
 
+    @include mq(min, sm) {
+    font-size: rem(18px);
+    line-height: rem(26px);
+    }    
+
     @include mq(min, md) {
-      font-size: 1.2vw;
-      max-width: rem(500px);
+      font-size: rem(20px);
+      line-height: rem(28px);
+      max-width: rem(540px);
     }
 
   }
@@ -196,9 +207,9 @@
   &__sublogo {
     margin-top: auto;
     color: var(--color-text-light);
-    font-size: 1.11vw;
+    font-size: rem(20px);
+    line-height: rem(28px);
     font-weight: 300;
-    line-height: 110%;
 
     display: none;
 
@@ -211,13 +222,18 @@
   &__contact-info {
     margin-top: rem(24px);
     color: #fff;
-    font-size: rem(18px);
-    line-height: rem(26px);
+    font-size: rem(16px);
+    line-height: rem(22px);
     font-weight: 300;
 
+    @include mq(min, sm) {
+      font-size: rem(18px);
+      line-height: rem(26px);
+    }
+
     @include mq(min, md) {
-      font-size: 1.2vw;
-      max-width: rem(500px);
+      font-size: rem(20px);
+      line-height: rem(28px);
     }    
   }
 

@@ -2,14 +2,16 @@ export default function initModal(scope = document) {
 
   return gsap.context(() => {
 
-    const openBtn = scope.querySelector(".hero-cta");
-    const modal = scope.querySelector(".modal");
-    const overlay = scope.querySelector(".modal__overlay");
+    const openBtn  = scope.querySelectorAll(".button-open-modal");
+    const modal    = scope.querySelector(".modal");
+    const overlay  = scope.querySelector(".modal__overlay");
     const windowEl = scope.querySelector(".modal__window");
     const closeBtn = scope.querySelector(".modal__close");
-    const formEls = windowEl.querySelectorAll(".is-anitame");
+    const modalForm = scope.querySelector(".modal__form");
 
-    if (!openBtn || !modal) return;
+    if (!openBtn || !modal || !overlay || !windowEl) return;
+
+    const formEls = windowEl.querySelectorAll(".is-anitame");
 
     // === MODAL TIMELINE ===
     const modalTl = gsap.timeline({
@@ -47,24 +49,53 @@ export default function initModal(scope = document) {
         duration: 0.4
       }, "-=0.2");
 
-    // === OPEN ===
-    openBtn.addEventListener("click", () => {
-      modalTl.play();
-    });
+    // === HELPERS ===
+    const openModal = () => {
+      if (!modalTl.isActive()) modalTl.play();
+      // ------------------------
+      // Focus на інпут з id="name"
+      // ------------------------
+      const firstInput = modalForm.querySelector("#name");
+      if (firstInput) {
+        setTimeout(() => {
+          firstInput.focus({ preventScroll: true });
+        }, 1000); 
+      }
+    };
 
-    // === CLOSE ===
-    [overlay, closeBtn].forEach(el => {
-      el.addEventListener("click", () => {
-        modalTl.reverse();
+    const closeModal = () => {
+      if (modalTl.progress() > 0) modalTl.reverse();
+    };
+
+    // === OPEN ===
+    if (openBtn.length) { 
+      openBtn.forEach(btn => {
+        btn.addEventListener("click", openModal);
       });
+    }
+
+    // === CLOSE BUTTON ===
+    closeBtn?.addEventListener("click", closeModal);
+
+    // === OVERLAY CLICK (close only when clicking overlay itself) ===
+    overlay.addEventListener("click", (e) => {
+      if (e.currentTarget !== e.target) return;
+      closeModal();
     });
 
     // === ESC KEY ===
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modalTl.isActive()) {
-        modalTl.reverse();
+    const onEsc = (e) => {
+      if (e.key === "Escape" && modalTl.progress() > 0) {
+        closeModal();
       }
-    });
+    };
+
+    window.addEventListener("keydown", onEsc);
+
+    // === CLEANUP (important for SPA / Barba / GSAP context) ===
+    return () => {
+      window.removeEventListener("keydown", onEsc);
+    };
 
   }, scope);
 }

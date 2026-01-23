@@ -9,6 +9,16 @@
     background-color: #fff;
     z-index: 1;
 
+    height: 100vh;
+    min-height: rem(560px);
+    max-height: rem(838px);
+
+    @include mq(min, sm) {
+        height: auto;
+        max-height: auto;
+        min-height: auto;
+    }
+
     &__image {
         position: relative;
         width: 100%;
