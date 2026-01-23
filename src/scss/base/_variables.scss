@@ -8,15 +8,17 @@ $container-width-xl: rem(1600px);
 :root {
   --base-font-size: 16px;
 
-  --font-general: "Montserrat", sans-serif;
+  --font-general: 'Montserrat', system-ui, -apple-system, sans-serif;
   --font-secondary: "HelveticaNeueCyr", Arial, sans-serif;
 
-  --color-text: #761b24;
+  --color-text: #63121a;
   --color-text2: #3a0b14;
   --color-text3: #211d1d;
   --color-text-light: #baa38f;
-  --color-accent: #63121a;
+  --color-accent: #761b24;
   --color-border: #E7E7E1;
+
+  --color-white: #ffffff;
 
   --transition: 0.4s;
   --transition-long: 1.2s ease;

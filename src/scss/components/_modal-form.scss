@@ -1,0 +1,247 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+// Modal
+
+.modal {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  @include flex-center;
+
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+
+  &__window {
+    position: absolute;
+    top: 12vh;
+    width: 85vw;
+    max-width: rem(1920px);
+    background: var(--color-text);
+    padding: rem(62px) rem(42px) rem(42px);
+    transform: scale(0.6);
+    opacity: 0;
+    color: #fff;
+  }
+
+  &__close {
+    position: absolute;
+    top: rem(16px);
+    right: rem(16px);
+    width: rem(40px);
+    height: rem(40px);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: rem(18px);
+      height: rem(2px);
+      background-color: #fff;
+      border-radius: rem(2px);
+      transition: transform var(--transition) ease, background-color var(--transition) ease;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+
+      &::before,
+      &::after {
+        background-color: #fff;
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(40px);
+  }
+
+  &__col {
+    flex: 1;
+
+    &--info {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    margin-bottom: rem(24px);
+  }
+
+  &__form {
+    display: grid;
+  }
+
+  &__form input {
+    padding: rem(14px) rem(16px);
+    border-radius: rem(12px);
+  }
+
+  &__submit {
+    margin-top: rem(8px);
+    padding: rem(14px);
+    border: none;
+    background: var(--color-white);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  &__title {
+    font-family: var(--font-general);
+    color: #fff;
+    letter-spacing: -.28vw;
+    font-size: 4.17vw;
+    font-weight: 400;
+    line-height: 3.89vw;
+  }
+
+  &__subtitle {
+    color: #fff;
+    font-size: 1.53vw;
+    font-weight: 300;
+    line-height: 110%;    
+  }
+
+  &__sublogo {
+    margin-top: auto;
+    color: var(--color-text-light);
+    font-size: 1.11vw;
+    font-weight: 300;
+    line-height: 110%;
+  }
+
+  &__contact-info {
+    margin-top: rem(24px);
+    color: #fff;
+    font-size: 1.53vw;
+    font-weight: 300;
+    line-height: 110%;
+  }
+
+  .buttons-wrap {
+    margin-top: rem(24px);
+
+    .button {
+      flex: 1;
+    }
+  }
+
+}
+
+
+/* Forms */
+.vi-field {
+  position: relative;
+  margin-bottom: rem(24px);
+}
+
+/* Input */
+.vi-field input {
+  width: 100%;
+  border: none;
+  border-bottom: rem(1px) solid var(--color-white);
+  outline: none;
+  padding: rem(14px) 0 rem(8px) 0;
+  font-size: rem(16px);
+  color: var(--color-white);
+  background: transparent;
+  border-radius: 0;
+}
+
+/* Label */
+.vi-field label {
+  position: absolute;
+  left: 0;
+  top: rem(14px);
+  font-size: rem(16px);
+  color: var(--color-white);
+  pointer-events: none;
+  transition: transform var(--transition) ease, font-size var(--transition) ease, color var(--transition) ease;
+  transform-origin: left top;
+}
+
+/* Underline */
+.vi-underline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: rem(3px);
+  width: 100%;
+  background: var(--color-white);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--transition) ease;
+}
+
+/* Floating label logic */
+.vi-field:focus-within label,
+.vi-field input:not(:placeholder-shown) + label {
+  transform: translateY(rem(-20px)) scale(0.75);
+  color: var(--color-text-light); 
+}
+
+/* Active underline */
+.vi-field:focus-within .vi-underline {
+  transform: scaleY(1);
+  color: var(--color-text-light);
+}
+
+.vi-field:focus-within label {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Invalid state */
+.vi-field input:invalid:not(:focus):not(:placeholder-shown) {
+  border-bottom-color: var(--color-white); 
+}
+
+/* Disabled */
+.vi-field input:disabled {
+  border-bottom-style: dashed;
+  color: var(--color-white);
+}
+
+/* Autofill fix (Chrome) */
+.vi-field input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-white);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .vi-field *,
+  .vi-underline {
+    transition: none;
+  }
+}

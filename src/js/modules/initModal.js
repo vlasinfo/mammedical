@@ -18,11 +18,13 @@ export default function initModal(scope = document) {
       onStart: () => {
         modal.style.pointerEvents = "auto";
         modal.setAttribute("aria-hidden", "false");
+        document.documentElement.style.overflow = "hidden";
         document.body.style.overflow = "hidden";
       },
       onReverseComplete: () => {
         modal.style.pointerEvents = "none";
         modal.setAttribute("aria-hidden", "true");
+        document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
       }
     });
