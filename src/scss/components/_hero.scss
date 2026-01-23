@@ -63,7 +63,7 @@
         }
 
         @include mq(min, rem(1950px)) {
-            height: 100vh;
+            min-height: 100vh;
             gap: rem(80px);
             
         }
@@ -76,6 +76,7 @@
         
         @include mq(min, sm) {
             flex-direction: row;    
+            align-items: center;
         }
     }
 

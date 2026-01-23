@@ -7,7 +7,7 @@ export default function initModal(scope = document) {
     const overlay = scope.querySelector(".modal__overlay");
     const windowEl = scope.querySelector(".modal__window");
     const closeBtn = scope.querySelector(".modal__close");
-    const formEls = windowEl.querySelectorAll("input, button");
+    const formEls = windowEl.querySelectorAll(".is-anitame");
 
     if (!openBtn || !modal) return;
 

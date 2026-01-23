@@ -20,16 +20,36 @@
     backdrop-filter: blur(0px);
   }
 
+  &__overflow {
+    overflow-y: auto;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+
   &__window {
     position: absolute;
-    top: 12vh;
-    width: 85vw;
+    inset: rem(15px);
+    bottom: auto;
+    width: auto;
     max-width: rem(1920px);
     background: var(--color-text);
-    padding: rem(62px) rem(42px) rem(42px);
+    padding: rem(20px) rem(25px);
     transform: scale(0.6);
     opacity: 0;
     color: #fff;
+
+    @include mq(min, md) {
+      top: 12vh;
+      width: 85vw;
+      margin: 0;
+      padding: rem(62px) rem(42px) rem(42px);
+    }
+
+    @include mq(min, 1920px) {
+      max-width: rem(1920px);
+    }
+
   }
 
   &__close {
@@ -82,7 +102,16 @@
   &__content {
     display: flex;
     justify-content: space-between;
-    gap: rem(40px);
+    gap: rem(14px);
+
+    flex-direction: column;
+
+    @include mq(min, md) {
+      gap: rem(40px);
+      flex-direction: row;
+    }
+
+
   }
 
   &__col {
@@ -91,6 +120,7 @@
     &--info {
       display: flex;
       flex-direction: column;
+      padding-right: rem(28px);
     }
   }
 
@@ -114,22 +144,53 @@
     background: var(--color-white);
     color: var(--color-text);
     cursor: pointer;
+    transition: letter-spacing var(--transition) ease, box-shadow var(--transition) ease, font-weight var(--transition) ease;
+
+    &:hover {
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      box-shadow: inset 0 0 4px 4px rgba(118, 27, 36, .6);
+    }
+    &:active {
+      letter-spacing: 0.8px;
+      box-shadow: inset 0 0 5px 5px rgba(118, 27, 36, .8);
+    }
   }
 
   &__title {
     font-family: var(--font-general);
     color: #fff;
     letter-spacing: -.28vw;
-    font-size: 4.17vw;
+    font-size: 42px;
+    line-height: 48px;
     font-weight: 400;
-    line-height: 3.89vw;
+
+    @include mq(min, md) {
+      font-size: 4.17vw;
+      line-height: 3.89vw;
+    }    
+
+    br {
+      display: none;
+
+      @include mq(min, md) {
+        display: block;
+      }
+    }
+
   }
 
   &__subtitle {
     color: #fff;
-    font-size: 1.53vw;
+    font-size: rem(18px);
+    line-height: rem(26px);
     font-weight: 300;
-    line-height: 110%;    
+
+    @include mq(min, md) {
+      font-size: 1.2vw;
+      max-width: rem(500px);
+    }
+
   }
 
   &__sublogo {
@@ -138,21 +199,39 @@
     font-size: 1.11vw;
     font-weight: 300;
     line-height: 110%;
+
+    display: none;
+
+    @include mq(min, md) {
+      display: block;
+    }
+
   }
 
   &__contact-info {
     margin-top: rem(24px);
     color: #fff;
-    font-size: 1.53vw;
+    font-size: rem(18px);
+    line-height: rem(26px);
     font-weight: 300;
-    line-height: 110%;
+
+    @include mq(min, md) {
+      font-size: 1.2vw;
+      max-width: rem(500px);
+    }    
   }
 
   .buttons-wrap {
     margin-top: rem(24px);
+    flex-direction: column;
+
+    @include mq(min, 628px) {
+      flex-direction: row;
+    }
 
     .button {
       flex: 1;
+      white-space: nowrap;
     }
   }
 
@@ -176,6 +255,7 @@
   color: var(--color-white);
   background: transparent;
   border-radius: 0;
+  letter-spacing: 1px;
 }
 
 /* Label */
