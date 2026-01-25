@@ -327,7 +327,25 @@ h1 {
   .spasing {
     letter-spacing: 4px;
   }
-} 
+}
+
+h2 {
+  font-size: 48px;
+  font-size: clamp(32px, 4.21vw, 48px);
+  line-height: clamp(32px, 4.5vw, 48px);
+  font-weight: 500;
+  margin: rem(30px) 0 rem(60px);
+
+  @include mq(min, sm) {
+    font-size: clamp(36px, 3.5vw, 56px);
+    line-height: clamp(36px, 4vw, 56px);
+  }
+
+  @include mq(min, md) {
+    font-size: clamp(42px, 3.17vw, 64px);
+    line-height: clamp(42px, 3.5vw, 64px);
+  }  
+}
 
 .text-block {
 
@@ -396,8 +414,8 @@ body.is-loading {
     padding-right: 15px;
     
     @include mq(min, sm) {
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 50px;
+      padding-right: 50px;
     }
     @include mq(min, 2020px) {
         max-width: calc(2010px - rem(64px));
@@ -419,3 +437,12 @@ body.is-loading {
     display: none !important;
   }
 } 
+
+.square-brackets {
+  color: var(--color-text-light);
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 500;
+}
+
+// 

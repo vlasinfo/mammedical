@@ -15,8 +15,12 @@
 
     @include mq(min, sm) {
         height: auto;
-        max-height: auto;
+        max-height: 100%;
         min-height: auto;
+    }
+
+    @include mq(min, md) {
+        height: 100vh;
     }
 
     &__image {
@@ -72,10 +76,8 @@
             padding: rem(140px) 0 rem(50px);
         }
 
-        @include mq(min, rem(1950px)) {
-            min-height: 100vh;
-            gap: rem(80px);
-            
+        @include mq(min, md) {
+            height: 100vh;
         }
 
     }

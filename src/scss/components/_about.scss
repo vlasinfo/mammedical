@@ -1,0 +1,52 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+.vi-about {
+    padding: rem(120px) 0;  
+} 
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: rem(40px);
+
+    @include mq(min, sm) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(60px);
+    }
+
+
+    .caption {
+        font-size: rem(18px);
+        line-height: rem(28px);
+        margin-top: rem(16px);
+
+        .icon {
+            svg {
+                width: rem(24px);
+                height: rem(24px);
+                margin-right: rem(4px);
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .text-block {
+        margin: 56px 0;
+        p {
+            font-size: rem(28px);
+            line-height: rem(34px);
+        }
+    }
+
+    .about-img-3 {
+        display: flex;
+        gap: rem(60px);
+
+        .about-col-inner {
+            flex: 1;
+        }
+    }
+}
