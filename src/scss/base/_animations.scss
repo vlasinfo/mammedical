@@ -15,6 +15,25 @@
   will-change: transform, opacity, filter;
 }
 
+.vi-prlx-1 {
+  will-change: transform;
+}
+
+
+.reveal {
+  visibility: hidden;
+  position: relative;
+  max-width: 100%;
+  opacity: 0;
+  overflow: hidden;
+
+  img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    transform-origin: left;
+  }
+}
 
 // 
 
