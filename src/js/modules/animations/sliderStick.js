@@ -26,7 +26,7 @@ export default function initSliderStick(scope = document) {
       animation: racesTween,
       scrub: 1,
       invalidateOnRefresh: true,
-      markers: true,
+      markers: false,
     });
 
     // cleanup on breakpoint change
