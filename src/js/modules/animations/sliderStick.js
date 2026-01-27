@@ -39,7 +39,7 @@ export default function initSliderStick(scope = document) {
         end: () => `left center`,
         containerAnimation: racesTween,
         scrub: true,
-        markers:  ,
+        markers: true,
       },
     });
   }
