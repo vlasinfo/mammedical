@@ -12,8 +12,8 @@ export default function initSnowflake() {
   // ❄️ налаштування — ВСІ ПРАЦЮЮТЬ
   Snowflake.size(1);       // множник (1 = стандарт)
   Snowflake.speed(1);
-  Snowflake.density(0.6);
-  Snowflake.opacity(0.25);
+  Snowflake.density(1);
+  Snowflake.opacity(0.15);
   Snowflake.quality(2);
   Snowflake.index(9999);
 

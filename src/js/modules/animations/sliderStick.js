@@ -1,46 +1,38 @@
 gsap.registerPlugin(ScrollTrigger);
 
 export default function initSliderStick(scope = document) {
-  const races = document.querySelector(".races");
-  const racesWrapper = document.querySelector(".racesWrapper");
+  const races = scope.querySelector(".slider-stick");
+  const racesWrapper = scope.querySelector(".slider-stick-wrapper");
 
   if (!races || !racesWrapper) return;
 
-  // Calculate horizontal scroll distance
-  const getScrollAmount = () => -(races.scrollWidth - window.innerWidth);
+  const mm = gsap.matchMedia();
 
-  // Main horizontal scroll tween
-  const racesTween = gsap.to(races, {
-    x: getScrollAmount,
-    ease: "none",
-  });
+  mm.add("(min-width: 767px)", () => {
+ 
+    const getScrollAmount = () =>
+      -(races.scrollWidth - window.innerWidth);
 
-  // ScrollTrigger for horizontal scroll
-  ScrollTrigger.create({
-    trigger: racesWrapper,
-    start: "top 120px",
-    end: () => `+=${-getScrollAmount()}`,
-    pin: true,
-    animation: racesTween,
-    scrub: 1,
-    invalidateOnRefresh: true,
-    markers: true,
-  });
-
-  // ScrollTrigger for Hungary title animation
-  const hungary = document.querySelector(".hungary h2");
-  if (hungary) {
-    gsap.to(hungary, {
-      scale: 0.5,
-      opacity: 0.5,
-      scrollTrigger: {
-        trigger: hungary.parentElement, // the .hungary div
-        start: () => `left center+=${window.innerWidth / 2}`,
-        end: () => `left center`,
-        containerAnimation: racesTween,
-        scrub: true,
-        markers: true,
-      },
+    const racesTween = gsap.to(races, {
+      x: getScrollAmount,
+      ease: "none",
     });
-  }
+
+    ScrollTrigger.create({
+      trigger: racesWrapper,
+      start: "top 140px",
+      end: () => `+=${-getScrollAmount()}`,
+      pin: true,
+      animation: racesTween,
+      scrub: 1,
+      invalidateOnRefresh: true,
+      markers: true,
+    });
+
+    // cleanup on breakpoint change
+    return () => {
+      racesTween.kill();
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    };
+  });
 }

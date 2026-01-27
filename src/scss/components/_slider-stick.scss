@@ -14,6 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 42px;
 
     >div {
         flex: 1;
@@ -21,42 +22,79 @@
 }
 
 
-.races {
-	width:fit-content;
-	display:flex;
-	flex-wrap:nowrap;
-}
+// 
 
-.races h2 {
-	font-size:30vw;
-	flex-shrink:0;
-	padding-right:0.3em;
-	padding-left:0;
-	color:#e10600;
-	
-	margin:0;	
-}
+.slider-stick {
 
-.races div:last-of-type h2 {
-	/* background:#e1e1ff; */
-}
+    display: flex;
+    justify-content: space-between;
+    gap: rem(20px);
+    flex-direction: column;
 
-.lightBG {
-	background:#313143;
-}
 
-.space-20vh {
-	height:20vh;
-}
+    @include mq(min, sm) {
+        overflow-x: auto;        
+        width: fit-content;
+	    flex-wrap: nowrap;
+        flex-direction: row; 
+        gap: rem(50px);
+    }
 
-.space-30vh {
-	height:30vh;
-}
 
-.space-200 {
-	height: 140px;
-}
+    &__slide {
+        background-color: var(--color-text);
+        color: var(--color-white);
+        padding: rem(20px);
+        width: 100%;
 
-.space-100vh {
-	height:100vh;
+        @include mq(min, sm) {
+            padding: rem(40px);
+            width: rem(500px);
+        }
+
+        &:last-child {
+            margin-right: 52px;
+        }   
+    }
+
+    &__title {
+        font-size: 26px;
+        line-height: 32px;
+        font-weight: 500;
+        margin: 0 0 rem(18px) 0;
+
+        @include mq(min, sm) {
+            font-size: 36px;
+            line-height: 42px;
+        }        
+    }
+
+    &__text {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 300;
+        
+        @include mq(min, sm) {
+            font-size: 26px;
+            line-height: 32px;
+        }         
+    }
+    
+    &__set {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: rem(20px);
+        gap: rem(16px);
+        color: var(--color-text-light);
+        font-size: rem(24px);
+    }
+
+    &__icon {
+        svg {
+            width: rem(32px);
+            height: rem(32px);
+        }
+    }   
+
 }
