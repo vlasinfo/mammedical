@@ -8,8 +8,10 @@ import initScrollSmoother from './modules/initScrollSmoother.js';
 import initButton from         './modules/initButton.js';
 import initSnowflake from      './modules/initSnowflake.js';
 import initAnimations from     './modules/initAnimations.js';
-import initCircleButton from     './modules/initCircleButton.js';
-import initModal from     './modules/initModal.js';
+import initCircleButton from   './modules/initCircleButton.js';
+import initModal from          './modules/initModal.js';
+import initTextReveal from     './modules/animations/textReveal.js';
+import initSliderStick from    './modules/animations/sliderStick.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
@@ -18,10 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollSmoother();
     initHeader();
     initCircleButton();
-    initHero();
+    initHero(); 
     initScroll();
     initButton();
     initAnimations(); 
+    initTextReveal();
+    initSliderStick();
     initSnowflake(); // сніг запускаємо ТІЛЬКИ після прелоадера
 
     document.removeEventListener('preloaderFinished', onPreloaderFinish);

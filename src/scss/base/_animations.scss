@@ -15,11 +15,7 @@
   will-change: transform, opacity, filter;
 }
 
-.vi-prlx-1 {
-  will-change: transform;
-}
-
-
+// Images reveal
 .reveal {
   visibility: hidden;
   position: relative;
@@ -35,7 +31,20 @@
   }
 }
 
-// 
+// text reveal
+
+.text-split {
+  opacity: 0; /* hide until GSAP sets it visible */
+}
+
+.text-split .word,
+.text-split .char {
+  display: inline-block;
+}
+
+
+
+
 
 
 

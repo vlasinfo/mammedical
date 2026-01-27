@@ -78,35 +78,73 @@ export default function initAnimations(scope = document) {
     /* ======================
        REVEAL BLOCKS
     ====================== */
-    gsap.utils.toArray(".reveal").forEach(container => {
 
+
+    // Знаходимо всі елементи з класом .reveal
+    let revealContainers = document.querySelectorAll(".reveal");
+
+    // Проходимося по кожному контейнеру
+    revealContainers.forEach((container) => {
+
+      // Беремо зображення всередині контейнера
       const image = container.querySelector("img");
-      if (!image) return;
 
+      // Створюємо таймлайн GSAP зі ScrollTrigger
       const tl = gsap.timeline({
-        defaults: {
-          duration: 1.4,
-          ease: "power2.out"
-        },
         scrollTrigger: {
+          // Тригером є сам контейнер
           trigger: container,
-          start: "top bottom",
-          end: "top center",
-          scrub: true
+
+          // Анімація стартує, коли верх контейнера доходить до 80% вікна
+          start: "top 80%",
+
+          // play — при скролі вниз
+          // reverse — при скролі вгору
+          toggleActions: "play none none none"
         }
       });
 
+      // Робимо контейнер видимим перед стартом анімації
+      // autoAlpha = opacity + visibility
       tl.set(container, { autoAlpha: 1 });
 
+      // Анімація контейнера:
+      // виїжджає зліва направо
       tl.from(container, {
-        xPercent: -100
-      })
-      .from(image, {
-        xPercent: 100, 
-        scale: 1.1
-      }, "<"); // sync animations instead of negative delay
+        xPercent: -100,        // стартує за межами екрану зліва
+        duration: 1.5,         // тривалість анімації
+        ease: "power2.out"     // плавне гальмування
+      });
+
+      // Анімація картинки всередині контейнера
+      tl.from(image, {
+        xPercent: 100,         // стартує справа
+        scale: 1.3,            // трохи збільшена
+        duration: 1.5,
+        ease: "power2.out"
+      }, "<"); // "<" — стартує одночасно з попередньою анімацією
+
+
+        /* ======================
+          PARALLAX IMAGE
+        ====================== */
+        gsap.to(image, {
+          yPercent: -20,          // глибина паралаксу
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom", // починає рух коли секція з’являється
+            end: "bottom top",   // закінчує коли виходить
+            scrub: true          // прив’язка до скролу
+          }
+        });
+
 
     });
+
+
+    
+
 
 
   }, scope);
