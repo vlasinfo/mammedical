@@ -370,6 +370,21 @@ h2 {
 
 }
 
+
+.title-desc-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 42px;
+
+    >div {
+        flex: 1;
+    }
+    h2 {
+        margin: 0;
+    }    
+}
+
 .text-with-button-block {
 
   display: flex;

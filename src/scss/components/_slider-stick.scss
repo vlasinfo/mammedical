@@ -3,27 +3,12 @@
 @use "mixins/media-query" as * ;
 
 .vi-slider-stick {
-    padding: rem(20px) 0;  
-
-    h2 {
-        margin: 0;
-    }
+    padding: rem(20px) 0 60px 0;
 } 
-
-.title-desc-right {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 42px;
-
-    >div {
-        flex: 1;
-    }
-}
 
 
 // 
-
+ 
 .slider-stick {
 
     display: flex;
@@ -53,7 +38,7 @@
         }
 
         &:last-child {
-            margin-right: 52px;
+            margin-right: 102px;
         }   
     }
 
