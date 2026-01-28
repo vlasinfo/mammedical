@@ -1,38 +1,40 @@
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function initSliderStick(scope = document) {
   const races = scope.querySelector(".slider-stick");
-  const racesWrapper = scope.querySelector(".slider-stick-wrapper");
+  const wrapper = scope.querySelector(".slider-stick-wrapper");
 
-  if (!races || !racesWrapper) return;
+  if (!races || !wrapper) return;
 
   const mm = gsap.matchMedia();
 
   mm.add("(min-width: 767px)", () => {
- 
-    const getScrollAmount = () =>
-      -(races.scrollWidth - window.innerWidth);
+    // GSAP context ensures clean revert
+    const ctx = gsap.context(() => {
+      const getScrollAmount = () =>
+        -(races.scrollWidth - window.innerWidth);
 
-    const racesTween = gsap.to(races, {
-      x: getScrollAmount,
-      ease: "none",
-    });
+      const tween = gsap.to(races, {
+        x: () => getScrollAmount(),
+        ease: "none",
+      });
 
-    ScrollTrigger.create({
-      trigger: racesWrapper,
-      start: "top 140px",
-      end: () => `+=${-getScrollAmount()}`,
-      pin: true,
-      animation: racesTween,
-      scrub: 1,
-      invalidateOnRefresh: true,
-      markers: false,
-    });
+      ScrollTrigger.create({
+        trigger: wrapper,
+        start: "top 140px",
+        end: () => `+=${Math.abs(getScrollAmount())}`,
+        pin: true,
+        animation: tween,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        markers: false,
+      });
+    }, scope);
 
-    // cleanup on breakpoint change
-    return () => {
-      racesTween.kill();
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
+    // Cleanup when media query changes
+    return () => ctx.revert();
   });
 }

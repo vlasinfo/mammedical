@@ -39,6 +39,10 @@
 
         &:last-child {
             margin-right: 102px;
+
+            @include mq(min, xxxl) {
+                margin-right: 600px;
+            }            
         }   
     }
 
