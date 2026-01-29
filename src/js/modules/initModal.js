@@ -1,17 +1,40 @@
+import gsap from "gsap";
+
 export default function initModal(scope = document) {
 
   return gsap.context(() => {
 
-    const openBtn  = scope.querySelectorAll(".button-open-modal");
+    const openBtns = scope.querySelectorAll(".button-open-modal");
     const modal    = scope.querySelector(".modal");
     const overlay  = scope.querySelector(".modal__overlay");
     const windowEl = scope.querySelector(".modal__window");
     const closeBtn = scope.querySelector(".modal__close");
     const modalForm = scope.querySelector(".modal__form");
 
-    if (!openBtn || !modal || !overlay || !windowEl) return;
+    if (!openBtns.length || !modal || !overlay || !windowEl) return;
 
     const formEls = windowEl.querySelectorAll(".is-anitame");
+
+    let scrollY = 0;
+
+    // === BODY LOCK HELPERS ===
+    const lockScroll = () => {
+      scrollY = window.scrollY;
+
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+    };
+
+    const unlockScroll = () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+
+      window.scrollTo(0, scrollY);
+    };
 
     // === MODAL TIMELINE ===
     const modalTl = gsap.timeline({
@@ -20,14 +43,12 @@ export default function initModal(scope = document) {
       onStart: () => {
         modal.style.pointerEvents = "auto";
         modal.setAttribute("aria-hidden", "false");
-        document.documentElement.style.overflow = "hidden";
-        document.body.style.overflow = "hidden";
+        lockScroll();
       },
       onReverseComplete: () => {
         modal.style.pointerEvents = "none";
         modal.setAttribute("aria-hidden", "true");
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
+        unlockScroll();
       }
     });
 
@@ -49,41 +70,35 @@ export default function initModal(scope = document) {
         duration: 0.4
       }, "-=0.2");
 
-    // === HELPERS ===
-    const openModal = () => {
+    // === OPEN ===
+    const openModal = (e) => {
+      e?.preventDefault(); // 🔥 stops scroll-to-top
       if (!modalTl.isActive()) modalTl.play();
-      // ------------------------
-      // Focus на інпут з id="name"
-      // ------------------------
-      const firstInput = modalForm.querySelector("#name");
+
+      const firstInput = modalForm?.querySelector("#name");
       if (firstInput) {
         setTimeout(() => {
           firstInput.focus({ preventScroll: true });
-        }, 1000); 
+        }, 600);
       }
     };
 
+    // === CLOSE ===
     const closeModal = () => {
       if (modalTl.progress() > 0) modalTl.reverse();
     };
 
-    // === OPEN ===
-    if (openBtn.length) { 
-      openBtn.forEach(btn => {
-        btn.addEventListener("click", openModal);
-      });
-    }
-
-    // === CLOSE BUTTON ===
-    closeBtn?.addEventListener("click", closeModal);
-
-    // === OVERLAY CLICK (close only when clicking overlay itself) ===
-    overlay.addEventListener("click", (e) => {
-      if (e.currentTarget !== e.target) return;
-      closeModal();
+    openBtns.forEach(btn => {
+      btn.addEventListener("click", openModal);
     });
 
-    // === ESC KEY ===
+    closeBtn?.addEventListener("click", closeModal);
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    // === ESC ===
     const onEsc = (e) => {
       if (e.key === "Escape" && modalTl.progress() > 0) {
         closeModal();
@@ -92,7 +107,7 @@ export default function initModal(scope = document) {
 
     window.addEventListener("keydown", onEsc);
 
-    // === CLEANUP (important for SPA / Barba / GSAP context) ===
+    // === CLEANUP ===
     return () => {
       window.removeEventListener("keydown", onEsc);
     };

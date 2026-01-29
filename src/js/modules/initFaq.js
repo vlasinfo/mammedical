@@ -87,8 +87,9 @@ export default function initFaqAccordion(scope = document) {
       items.forEach(i => {
         if (i !== item) {
           gsap.to(i, {
-            opacity: 0.4,
+            opacity: 0.2,
             duration: 0.8,
+            zIndex: 0,
             ease: "power2.out"
           });
         }
@@ -99,10 +100,50 @@ export default function initFaqAccordion(scope = document) {
       gsap.to(items, {
         opacity: 1,
         duration: 0.8,
+        zIndex: 1,
         ease: "power2.out"
       });
     });
   });
+
+
+
+    /* =========================
+      LIST-CHECK HOVER DIM (MULTIPLE)
+    ========================= */
+    const listChecks = scope.querySelectorAll(".list-check");
+
+    if (listChecks.length && window.matchMedia("(hover: hover)").matches) {
+      listChecks.forEach(listCheck => {
+        const items = listCheck.querySelectorAll(".list-check__item");
+        if (!items.length) return;
+
+        items.forEach(item => {
+          item.addEventListener("mouseenter", () => {
+            items.forEach(i => {
+              if (i !== item) {
+                gsap.to(i, {
+                  opacity: 0.6,
+                  duration: 0.4,
+                  ease: "power2.out",
+                  overwrite: "auto",
+                });
+              }
+            });
+          });
+
+          item.addEventListener("mouseleave", () => {
+            gsap.to(items, {
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          });
+        });
+      });
+    }
+
 
 
 }
