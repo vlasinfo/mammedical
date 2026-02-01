@@ -40,7 +40,7 @@
         &:last-child {
             margin-right: 102px;
 
-            @include mq(min, xxxl) {
+            @include mq(min, xxl) {
                 margin-right: 600px;
             }            
         }   
@@ -87,3 +87,15 @@
     }   
 
 }
+
+// @media (max-width: 766px) {
+//   .slider-stick {
+//     display: block;
+//     transform: none !important;
+//   }
+
+//   .slider-stick__slide {
+//     min-height: 100vh;
+//   }
+// }
+

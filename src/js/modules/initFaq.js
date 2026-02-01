@@ -27,42 +27,50 @@ export default function initFaqAccordion(scope = document) {
   });
 
   /* =========================
-     ACCORDION
+     FAQ ACCORDION (MULTI-OPEN)
   ========================= */
   items.forEach(item => {
     const button = item.querySelector(".faq-list__question");
     const answer = item.querySelector(".faq-list__answer");
     const icon = item.querySelector(".faq-list__icon svg");
 
+    // Initial state
     gsap.set(answer, { height: 0 });
     gsap.set(icon, { rotate: 0 });
 
     button.addEventListener("click", () => {
       const isOpen = item.classList.contains("active");
 
-      // close all
-      items.forEach(i => {
-        i.classList.remove("active");
-        gsap.to(i.querySelector(".faq-list__answer"), {
+      /* ---------
+         TOGGLE CURRENT ITEM ONLY
+      --------- */
+      if (isOpen) {
+        // Close
+        item.classList.remove("active");
+
+        gsap.to(answer, {
           height: 0,
           duration: 0.4,
           ease: "power2.out"
         });
-        gsap.to(i.querySelector(".faq-list__icon svg"), {
+
+        gsap.to(icon, {
           rotate: 0,
           duration: 0.3,
           ease: "power2.out"
         });
-      });
-
-      // open current
-      if (!isOpen) {
+      } else {
+        // Open
         item.classList.add("active");
 
         gsap.to(answer, {
           height: "auto",
           duration: 0.5,
-          ease: "power2.out"
+          ease: "power2.out",
+          onComplete: () => {
+            // Update ScrollTrigger after height change
+            ScrollTrigger.refresh();
+          }
         });
 
         gsap.to(icon, {
@@ -71,16 +79,13 @@ export default function initFaqAccordion(scope = document) {
           ease: "power2.out"
         });
       }
-
-      ScrollTrigger.refresh();
     });
   });
 
   /* =========================
-     HOVER DIM OTHERS
+     HOVER DIM OTHERS (FAQ)
   ========================= */
-  const hasHover = window.matchMedia("(hover: hover)").matches;
-  if (!hasHover) return;
+  if (!window.matchMedia("(hover: hover)").matches) return;
 
   items.forEach(item => {
     item.addEventListener("mouseenter", () => {
@@ -105,45 +110,4 @@ export default function initFaqAccordion(scope = document) {
       });
     });
   });
-
-
-
-    /* =========================
-      LIST-CHECK HOVER DIM (MULTIPLE)
-    ========================= */
-    const listChecks = scope.querySelectorAll(".list-check");
-
-    if (listChecks.length && window.matchMedia("(hover: hover)").matches) {
-      listChecks.forEach(listCheck => {
-        const items = listCheck.querySelectorAll(".list-check__item");
-        if (!items.length) return;
-
-        items.forEach(item => {
-          item.addEventListener("mouseenter", () => {
-            items.forEach(i => {
-              if (i !== item) {
-                gsap.to(i, {
-                  opacity: 0.6,
-                  duration: 0.4,
-                  ease: "power2.out",
-                  overwrite: "auto",
-                });
-              }
-            });
-          });
-
-          item.addEventListener("mouseleave", () => {
-            gsap.to(items, {
-              opacity: 1,
-              duration: 0.4,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          });
-        });
-      });
-    }
-
-
-
 }
