@@ -1,89 +1,81 @@
-<div class="vi-hero">
+<section class="vi-hero" aria-label="Hero section: MAM Medical Center">
 
-    <div class="container">
+  <div class="container">
 
-        <div class="vi-hero__content"> 
-            
-            <div class="text-block">
-                <h1 class="vi-animate-title"><span class="spacing">MAM</span><br>MEDICAL</h1>
-                <div class="desc vi-animate-desc">Медичний центр жіночого здоровʼя</div> 
-            </div>
+    <header class="vi-hero__content"> 
+      
+      <h1 class="vi-animate-title">
+        <span class="spacing">MAM</span><br>MEDICAL
+      </h1>
+      <p class="desc vi-animate-desc">Медичний центр жіночого здоровʼя</p> 
 
-            <div class="text-with-button-block">
-                <div class="text-col vi-animate-desc"> 
-                    <p>
-                        Лікуємо з любовʼю, здоровʼя<br>
-                        мам і дітей - наша місія.
-                    </p>
-                </div>
-                <div class="button-col"> 
-
-                    <button class="hero-cta button-open-modal" aria-label="Записатись на прийом">
-                    <span class="hero-cta__gradient"></span>
-                    <span class="hero-cta__wave"></span>
-                    <span class="hero-cta__text">
-                        Записатись<br>на прийом
-                    </span>
-                    </button>                 
-
-                </div>
-                
-            </div>
-
-            
+      <div class="text-with-button-block">
+        
+        <div class="text-col vi-animate-desc"> 
+          <p>
+            Лікуємо з любовʼю, здоровʼя<br>
+            мам і дітей — наша місія.
+          </p>
         </div>
-    </div>
 
-    <div class="vi-hero__image">         
+        <div class="button-col"> 
+          <button 
+            class="hero-cta button-open-modal" 
+            aria-label="Записатись на прийом" 
+            aria-haspopup="dialog" 
+            aria-controls="appointment-modal">
+            <span class="hero-cta__gradient" aria-hidden="true"></span>
+            <span class="hero-cta__wave" aria-hidden="true"></span>
+            <span class="hero-cta__text">
+              Записатись<br>на прийом
+            </span>
+          </button>                 
+        </div>
+        
+      </div>
 
-        <picture>
-            <!-- MOBILE: force 480 up to 767px -->
-            <source
-                media="(max-width: 767px)"
-                type="image/avif"
-                srcset="../assets/img/hero/hero-480.avif"
-            >
-            <source
-                media="(max-width: 767px)"
-                type="image/webp"
-                srcset="../assets/img/hero/hero-480.webp"
-            >
+    </header>
+  </div>
 
-            <!-- DESKTOP -->
-            <source
-                type="image/avif"
-                srcset="
-                ../assets/img/hero/hero-768.avif 768w,
-                ../assets/img/hero/hero-1024.avif 1024w,
-                ../assets/img/hero/hero-1600.avif 1600w,
-                ../assets/img/hero/hero-1920.avif 1920w
-                "
-                sizes="(min-width: 768px) 90vw"
-            >
-            <source
-                type="image/webp"
-                srcset="
-                ../assets/img/hero/hero-768.webp 768w,
-                ../assets/img/hero/hero-1024.webp 1024w,
-                ../assets/img/hero/hero-1600.webp 1600w,
-                ../assets/img/hero/hero-1920.webp 1920w
-                "
-                sizes="(min-width: 768px) 90vw"
-            >
+  <figure class="vi-hero__image" aria-label="Hero image of MAM Medical Center">         
+    <picture>
+      <!-- MOBILE -->
+      <source
+        media="(max-width: 767px)"
+        type="image/avif"
+        srcset="../assets/img/hero/hero-480.avif 480w"
+        sizes="100vw"
+      >
+      <source
+        media="(max-width: 767px)"
+        type="image/webp"
+        srcset="../assets/img/hero/hero-480.webp 480w"
+        sizes="100vw"
+      >
 
-            <!-- LCP image (initiator) -->
-            <img
-                src="../assets/img/orig/hero-1024.jpg"
-                alt="Hero Image"
-                width="1200"
-                height="675"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-            >
-        </picture>
+      <!-- DESKTOP -->
+      <source
+        type="image/avif"
+        srcset="../assets/img/hero/hero-768.avif 768w, ../assets/img/hero/hero-1024.avif 1024w, ../assets/img/hero/hero-1600.avif 1600w, ../assets/img/hero/hero-1920.avif 1920w"
+        sizes="(min-width: 1920px) 1200px, (min-width: 1024px) 90vw, 100vw" 
+      >
+      <source
+        type="image/webp"
+        srcset="../assets/img/hero/hero-768.webp 768w, ../assets/img/hero/hero-1024.webp 1024w, ../assets/img/hero/hero-1600.webp 1600w, ../assets/img/hero/hero-1920.webp 1920w"
+        sizes="(min-width: 1920px) 1200px, (min-width: 1024px) 90vw, 100vw"
+      >
 
+      <!-- LCP image -->
+      <img
+        src="../assets/img/orig/hero-1024.jpg"
+        alt="Медичний центр жіночого здоровʼя — MAM MEDICAL"
+        width="1200"
+        height="675"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      >
+    </picture>
+  </figure>
 
-
-    </div>
-</div>
+</section>

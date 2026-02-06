@@ -1,29 +1,47 @@
+import Lenis from '@studio-freight/lenis';
+
 export default function initScrollSmoother() {
-  // Initialize Lenis
   const lenis = new Lenis({
-    duration: 1.2,           // scroll animation duration (seconds)
-    easing: (t) => t * (2 - t), // easing curve
-    smooth: true,            // enable smooth scrolling
-    direction: 'vertical',   // vertical scroll
-    mouseMultiplier: 1,      // scroll speed with mouse
-    smoothTouch: true        // enable smooth scrolling on touch devices
+    duration: 1,
+    easing: (t) => t * (2 - t),
+    smooth: true,
+    direction: 'vertical',
+    mouseMultiplier: 1,   // keep multiplier low for natural feel
+    smoothTouch: true
   });
 
-  // Animation loop
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
 
-  // Optional: smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) lenis.scrollTo(target);
+  // FAQ accordion example
+  const faq = document.querySelector(".faq-list");
+  if (faq) {
+    faq.addEventListener("click", () => {
+      // wait for accordion animation, then refresh scroll bounds
+      setTimeout(() => {
+        if (typeof lenis.resize === "function") {
+          lenis.resize();
+        } else {
+          lenis.update(); // fallback for older versions
+        }
+      }, 500);
     });
-  });
+  }
 
-  return lenis; // return instance if you need to control it later
+  // Optional: automatic refresh for any dynamic height
+  const main = document.querySelector("main");
+  if (main) {
+    new ResizeObserver(() => {
+      if (typeof lenis.resize === "function") {
+        lenis.resize();
+      } else {
+        lenis.update();
+      }
+    }).observe(main);
+  }
+
+  return lenis;
 }

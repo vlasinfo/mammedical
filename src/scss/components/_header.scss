@@ -14,6 +14,7 @@
     margin-top: 15px;
     justify-content: center;
     gap: rem(20px);
+    background-color: rgba(255,255,255, .3);
 
     transition:
       max-width var(--transition-long),
@@ -367,6 +368,15 @@
   position: relative;
   display: inline-block;
   text-decoration: none;
+
+    font-size: rem(18px);
+    line-height: 18px;
+    transition: color var(--transition-long), font-size var(--transition-long), line-height var(--transition-long);
+
+    @include mq(min, lg) {
+      font-size: rem(20px);
+      line-height: 20px;
+    }  
 
   .text {
     @include flex;

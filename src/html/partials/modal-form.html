@@ -1,65 +1,69 @@
 <!-- MODAL -->
-<div class="modal" aria-hidden="true">
-  
-<div class="modal__overflow">
-  <div class="modal__overlay"></div>
-  <div class="modal__window">
-    <button class="modal__close" aria-label="Close modal"></button>
+<div class="modal" id="appointment-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+  <div class="modal__overflow">
+    <div class="modal__overlay"></div>
+    <div class="modal__window">
+      <button class="modal__close" aria-label="Закрити модальне вікно"></button>
 
-    
-    <div class="modal__content">
+      <div class="modal__content">
 
-      <div class="modal__col modal__col--info">
-        <div class="modal__title is-anitame">Запис<br> на прийом</div>
-        <div class="modal__subtitle is-anitame">Залиште свої контактні дані і ми зв’яжемося з вами найближчим часом, щоб підтвердити запис.</div>
-        <div class="modal__sublogo">[ Mam Medical ]</div>
-      </div>
-
-      <div class="modal__col">
-
-        <form class="modal__form">
-
-          <div class="vi-field is-anitame">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder=" "
-              autocomplete="name"
-            />
-            <label for="name">Ваше ім'я</label>
-            <span class="vi-underline"></span>
-          </div>
-
-          <div class="vi-field is-anitame">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              placeholder=" "
-              autocomplete="tel"
-            />
-            <label for="phone">Номер телефону</label>
-            <span class="vi-underline"></span>
-          </div>
-
-          <button type="submit" class="modal__submit is-anitame">Записатись на прийом</button>
-        </form>
-
-        <div class="modal__contact-info is-anitame">
-          Або оберіть зручний для вас спосіб зв’язку:
+        <div class="modal__col modal__col--info">
+          <h2 id="modal-title" class="modal__title is-anitame">Запис на прийом</h2>
+          <p id="modal-desc" class="modal__subtitle is-anitame">
+            Залиште свої контактні дані і ми зв’яжемося з вами найближчим часом, щоб підтвердити запис.
+          </p>
+          <div class="modal__sublogo">[ Mam Medical ]</div>
         </div>
 
-        <div class="buttons-wrap is-anitame">
-          <a href="https://www.instagram.com/mam_medical_cv/" target="_blank" class="button button--small">Написати в Instagram</a>
-          <a href="tel:+380503035005" class="button button--small">+38 050 303 50 05</a>
+        <div class="modal__col">
+
+          <form class="modal__form" action="#" method="post">
+            <div class="vi-field is-anitame">
+              <label for="name">Ваше ім'я</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder=" "
+                autocomplete="name"
+              >
+              <span class="vi-underline"></span>
+            </div>
+
+            <div class="vi-field is-anitame">
+              <label for="phone">Номер телефону</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                placeholder=" "
+                autocomplete="tel"
+              >
+              <span class="vi-underline"></span>
+            </div>
+
+            <button type="submit" class="modal__submit is-anitame">Записатись на прийом</button>
+          </form>
+
+          <p class="modal__contact-info is-anitame">
+            Або оберіть зручний для вас спосіб зв’язку:
+          </p>
+
+          <div class="buttons-wrap is-anitame">
+            <a href="https://www.instagram.com/mam_medical_cv/" target="_blank" rel="noopener" class="button button--small">Написати в Instagram</a>
+            <a href="tel:+380503035005" class="button button--small">+38 050 303 50 05</a>
+          </div>
+
+          <div class="buttons-wrap is-anitame">
+            <button class="button button--wide button-open-modal" data-modal="appointment-modal">
+              Записатись на прийом
+            </button>
+          </div>
+
+        </div>
       </div>
-
-    </div>
-
     </div>
   </div>
-</div>
 </div>

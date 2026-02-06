@@ -54,8 +54,7 @@ abbr[title] {
 }
 
 address {
-  margin-bottom: 1rem;
-  font-style: normal;
+  display: inline-block;
   line-height: inherit;
 }
 
@@ -300,9 +299,9 @@ progress {
   vertical-align: baseline;
 }
 
-[hidden] {
-  display: none !important;
-}
+// [hidden] {
+//   display: none !important;
+// }
 
 .text-center {
   text-align: center !important;

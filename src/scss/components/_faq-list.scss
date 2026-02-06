@@ -161,6 +161,8 @@
         letter-spacing: 2.2px;
         margin-left: 20px;
         width: 56vw;
+        text-align: left;
+        color: var(--color-text);
 
         @include mq(min, sm) {
             margin-left: 0;
@@ -172,7 +174,7 @@
         margin-left: auto;
 
         svg {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s linear;
             width: rem(38px);
             height: rem(38px);
         }
@@ -236,8 +238,16 @@
         padding-left: rem(35px);
     }
 
+    &:hover {
+        .list-check__item:not(:hover) {
+            transition: opacity .6s;
+            opacity: .4
+        }            
+    }    
+
     &__item {
-        display: table-row;       
+        display: table-row;
+        transition: opacity .6s;
     }
 
     &__text {
@@ -311,3 +321,13 @@
 
     }
 }
+
+.faq-list__answer {
+  overflow: hidden;
+  will-change: height;
+}
+
+.faq-list__question {
+  touch-action: manipulation;
+}
+
