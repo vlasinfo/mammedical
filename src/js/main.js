@@ -10,7 +10,7 @@ import initSnowflake from      './modules/initSnowflake.js';
 import initAnimations from     './modules/initAnimations.js';
 import initCircleButton from   './modules/initCircleButton.js';
 import initModal from          './modules/initModal.js';
-import initFaq from          './modules/initFaq.js';
+import initFaq from            './modules/initFaq.js';
 import initTextReveal from     './modules/animations/textReveal.js';
 import initSliderStick from    './modules/animations/sliderStick.js';
 
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSliderStick();
     initFaq();
     initSnowflake(); // сніг запускаємо ТІЛЬКИ після прелоадера
+
 
     document.removeEventListener('preloaderFinished', onPreloaderFinish);
 
