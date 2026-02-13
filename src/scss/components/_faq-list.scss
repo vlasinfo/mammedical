@@ -3,7 +3,7 @@
 @use "mixins/media-query" as * ;
 
 .vi-faq-list {
-    padding: rem(60px) 0;  
+    padding: rem(60px) 0 rem(120px);  
 
     .title-desc-right {
         > div {
