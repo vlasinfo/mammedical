@@ -23,6 +23,11 @@
         height: 100vh;
     }
 
+    &__desc {
+        letter-spacing: rem(5.3px);
+        font-size: clamp(20px, 3vw, 32px);
+    }
+
     &__image {
         position: relative;
         width: 100%;
