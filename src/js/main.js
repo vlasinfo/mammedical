@@ -12,8 +12,9 @@ import initCircleButton from   './modules/initCircleButton.js';
 import initModal from          './modules/initModal.js';
 import initFaq from            './modules/initFaq.js';
 import initCheckUp from        './modules/initCheckUp.js'; 
+import initTeam from           './modules/initTeam.js'; 
 import initTextReveal from     './modules/animations/textReveal.js';
-import initSliderStick from    './modules/animations/sliderStick.js';
+import initSliderStick from    './modules/animations/sliderStick.js'; 
 
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSliderStick();
     initFaq();
     initCheckUp();
+    initTeam();
     initSnowflake(); // сніг запускаємо ТІЛЬКИ після прелоадера
 
 
