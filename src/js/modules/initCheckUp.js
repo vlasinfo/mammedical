@@ -57,7 +57,7 @@ export default function initCheckUp() {
         yPercent: -20,
         ease: "none",
         scrollTrigger: {
-          trigger: ".cards",
+          trigger: ".card",
           scrub: true
         }
       });

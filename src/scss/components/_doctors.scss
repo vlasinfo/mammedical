@@ -1,0 +1,62 @@
+@use "mixins/rem" as * ;
+@use "mixins/includes" as * ;
+@use "mixins/media-query" as * ;
+
+.vi-doctors {
+    padding: rem(120px) 0;
+}
+
+ 
+.doctors {
+  display: flex;
+  gap: rem(30px);
+  width: fit-content;
+  flex-wrap: nowrap;
+  flex-direction: row;  
+
+  &__slide {
+    width: 25%;
+  }
+
+
+}
+
+.doctors-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.doctors-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.doctors-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px;
+  color: #fff;
+}
+
+.doctors-name {
+  margin: 0;
+  color: #fff;
+  letter-spacing: rem(2px);
+  font-family: var(--font-secondary);
+  font-size: rem(32px);
+  font-weight: 300;
+  line-height: rem(38px);
+  margin-bottom: rem(20px);
+}
+
+.doctors-position {
+  margin: 0;
+font-size: rem(20px);
+line-height: rem(26px);
+font-weight: 300;
+}
