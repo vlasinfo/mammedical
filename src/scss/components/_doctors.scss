@@ -8,14 +8,18 @@
 
  
 .doctors {
-  display: flex;
-  gap: rem(30px);
-  width: fit-content;
-  flex-wrap: nowrap;
-  flex-direction: row;  
+
+  width: 100%;
+
+  &__wrapper {
+    display: flex;
+  }
 
   &__slide {
-    width: 500px;
+    flex-shrink: 0;
+
+    // user-select: none;
+    // pointer-events: none;
   }
 
 

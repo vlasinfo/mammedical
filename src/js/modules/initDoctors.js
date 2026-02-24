@@ -1,40 +1,41 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Swiper from "swiper";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function initDoctors() {
-  const el = document.querySelector('.doctors-swiper');
+export default function initDoctors(selector = ".doctors") {
+  const el = document.querySelector(selector);
   if (!el) return;
 
   const swiper = new Swiper(el, {
-    speed: 0,
-    allowTouchMove: false,
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    speed: 600,
+    allowTouchMove: false, // important for scroll control
   });
 
-  const slides = swiper.slides.length;
-  let lastIndex = -1;
+  // map scroll progress → swiper translate
+  function updateByProgress(progress) {
+    progress = Math.max(0, Math.min(1, progress));
 
-  ScrollTrigger.create({
-    trigger: '.vi-doctors',
-    start: 'top top',
-    end: `+=${slides * 100}%`,
-    pin: true,
-    scrub: 1,
+    const min = swiper.minTranslate();
+    const max = swiper.maxTranslate();
+    const current = (max - min) * progress + min;
 
-    snap: {
-      snapTo: 1 / (slides - 1),
-      duration: 0.4,
-      ease: 'power1.inOut'
-    },
+    swiper.setTranslate(current);
+    swiper.updateActiveIndex();
+    swiper.updateSlidesClasses();
+  }
 
-    onUpdate: (self) => {
-      const index = Math.round(self.progress * (slides - 1));
-      if (index !== lastIndex) {
-        swiper.slideTo(index, 0);
-        lastIndex = index;
-      }
+  // GSAP scroll control
+  gsap.to({}, {
+    scrollTrigger: {
+      trigger: el,
+      start: "center center",
+      end: () => "+=" + el.offsetWidth,
+      scrub: true,
+      pin: true,
+      onUpdate: self => updateByProgress(self.progress),
     }
   });
+
+  return swiper;
 }

@@ -56,7 +56,7 @@
     "snowflake": "^0.0.0",
     "split-type": "^0.3.4",
     "stream-browserify": "^3.0.0",
-    "swiper": "^11.0.5",
+    "swiper": "^11.2.10",
     "util": "^0.12.5"
   },
   "browserslist": [
