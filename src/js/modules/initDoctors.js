@@ -8,7 +8,7 @@ export default function initDoctors(selector = ".doctors") {
   const swiper = new Swiper(el, {
     slidesPerView: "auto",
     spaceBetween: 20,
-    speed: 600,
+    speed: 6000,
     allowTouchMove: false, // important for scroll control
   });
 
@@ -30,7 +30,7 @@ export default function initDoctors(selector = ".doctors") {
     scrollTrigger: {
       trigger: el,
       start: "center center",
-      end: () => "+=" + el.offsetWidth,
+      end: () => "+=" + el.offsetWidth * 2,
       scrub: true,
       pin: true,
       onUpdate: self => updateByProgress(self.progress),
@@ -39,3 +39,5 @@ export default function initDoctors(selector = ".doctors") {
 
   return swiper;
 }
+
+

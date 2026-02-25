@@ -25,7 +25,7 @@ export default function initSliderStick(scope = document) {
       ScrollTrigger.create({
         trigger: wrapper,
         start: "top 140px",
-        end: () => `+=${Math.abs(getScrollAmount())}`,
+        end: () => `+=${Math.abs(getScrollAmount()) * 1.5}`,
         pin: true,
         animation: tween,
         scrub: 1,
