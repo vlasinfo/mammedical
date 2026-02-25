@@ -233,15 +233,32 @@ export function fonts() {
 // ================= SERVER =================
 export function serve(done) {
   if (!isProd) {
+
+    const nets = os.networkInterfaces();
+    let localIP = 'localhost';
+
+    for (const name of Object.keys(nets)) {
+      for (const net of nets[name]) {
+        if (net.family === 'IPv4' && !net.internal) {
+          localIP = net.address;
+        }
+      }
+    }
+
     server.init({
       server: `./${destFolder}`,
+      host: '0.0.0.0', // 🔥 important
       port: 3000,
       open: true,
       notify: false
     });
+
+    console.log(`\n📱 Open on mobile: http://${localIP}:3000\n`);
   }
+
   done();
 }
+
 
 // ================= WATCH =================
 export function watchFiles() {
