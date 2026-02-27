@@ -1,4 +1,3 @@
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function initDoctors(selector = ".doctors") {
@@ -6,13 +5,19 @@ export default function initDoctors(selector = ".doctors") {
   if (!el) return;
 
   const swiper = new Swiper(el, {
-    slidesPerView: "auto",
+    slidesPerView: 1, // mobile default
     spaceBetween: 20,
-    speed: 6000,
-    allowTouchMove: false, // important for scroll control
+    speed: 600,
+    allowTouchMove: true,
+
+    breakpoints: {
+      768: {
+        slidesPerView: "auto",
+        allowTouchMove: false,
+      }
+    }
   });
 
-  // map scroll progress → swiper translate
   function updateByProgress(progress) {
     progress = Math.max(0, Math.min(1, progress));
 
@@ -25,19 +30,28 @@ export default function initDoctors(selector = ".doctors") {
     swiper.updateSlidesClasses();
   }
 
-  // GSAP scroll control
-  gsap.to({}, {
-    scrollTrigger: {
-      trigger: el,
-      start: "center center",
-      end: () => "+=" + el.offsetWidth * 2,
-      scrub: true,
-      pin: true,
-      onUpdate: self => updateByProgress(self.progress),
-    }
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 768px)", () => {
+
+    const tween = gsap.to({}, {
+      scrollTrigger: {
+        trigger: el,
+        start: "center center",
+        end: () => "+=" + el.offsetWidth * 2.5,
+        scrub: true,
+        pin: true,
+        invalidateOnRefresh: true,
+        onUpdate: self => updateByProgress(self.progress),
+      }
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      swiper.setTranslate(0);
+      swiper.update();
+    };
   });
 
   return swiper;
 }
-
-

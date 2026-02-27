@@ -37,6 +37,10 @@
             width: rem(500px);
         }
 
+        @media (max-height: 730px) {
+            padding: rem(15px) rem(30px);
+        }
+
         &:last-child {
             margin-right: 102px;
 
@@ -55,7 +59,13 @@
         @include mq(min, sm) {
             font-size: 36px;
             line-height: 42px;
-        }        
+        }      
+
+        @media (max-height: 730px) {
+            font-size: 22px;
+            line-height: 28px;
+        } 
+        
     }
 
     &__text {
@@ -66,6 +76,11 @@
         @include mq(min, sm) {
             font-size: 26px;
             line-height: 32px;
+        }   
+        
+        @media (max-height: 730px) {
+            font-size: 18px;
+            line-height: 24px;
         }         
     }
     
