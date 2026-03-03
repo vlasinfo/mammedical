@@ -272,6 +272,12 @@
     background: none;
     border: none;
     position: relative;
+    color: var(--color-text);
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--color-accent);
+    }
 
     .burg-part {
       position: absolute;
@@ -400,16 +406,6 @@
 
     > div {
       font-weight: bold;
-    }
-  }
-}
-
-
-// --- TOUCH DEVICES ---
-@media (hover: none) and (pointer: coarse) {
-  .hover-link {
-    .hover {
-      display: none;
     }
   }
 }

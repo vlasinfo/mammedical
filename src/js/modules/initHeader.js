@@ -97,6 +97,7 @@ export default function initHeader(scope = document) {
 
       body.style.overflow = "hidden";
       burger.classList.add("opened");
+      body.classList.add("is-opened");
       burger.setAttribute("aria-expanded", "true");
       navMobile.setAttribute("aria-hidden", "false");
 
@@ -113,6 +114,7 @@ export default function initHeader(scope = document) {
 
       body.style.overflow = "";
       burger.classList.remove("opened");
+      body.classList.remove("is-opened");
       burger.setAttribute("aria-expanded", "false");
       navMobile.setAttribute("aria-hidden", "true");
 
@@ -142,6 +144,29 @@ export default function initHeader(scope = document) {
         closeMenu();
       }
     });
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        const target = link.getAttribute("href");
+
+        // якщо це не anchor — нічого не чіпаємо
+        if (!target || !target.startsWith("#")) return;
+
+        e.preventDefault();
+
+        gsap.to(window, {
+          scrollTo: {
+            y: target,
+            offsetY: header ? header.offsetHeight : 0
+          },
+          duration: 1,
+          ease: "power2.out",
+          onComplete: () => {
+            if (isOpen) closeMenu();
+          }
+        });
+      });
+    });    
 
   }, scope);
 
