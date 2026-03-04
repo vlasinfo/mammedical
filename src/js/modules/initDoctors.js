@@ -1,35 +1,38 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Swiper from "swiper";
+
 gsap.registerPlugin(ScrollTrigger);
 
-export default function initDoctors(selector = ".vi-doctors") {
+export default function initDoctors(selector = ".doctors-pin") {
   const el = document.querySelector(selector);
-  const slider = document.querySelector('.doctors');
+  const slider = document.querySelector(".doctors");
   if (!el || !slider) return;
 
-  const swiper = new Swiper(slider, {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    speed: 600,
-    allowTouchMove: true,
-    observer: true,
-    observeParents: true,
+  // Factory function for Swiper
+  const createSwiper = () =>
+    new Swiper(slider, {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      speed: 0,
+      allowTouchMove: true,
+      breakpoints: {
+        768: {
+          slidesPerView: "auto",
+          allowTouchMove: false,
+        },
+      },
+    });
 
-    breakpoints: {
-      768: {
-        slidesPerView: "auto",
-        allowTouchMove: false,
-      }
-    }
-  });
+  let swiper = createSwiper();
 
   function updateByProgress(progress) {
-    progress = gsap.utils.clamp(0, 1, progress);
-
+    progress = Math.max(0, Math.min(1, progress));
     const min = swiper.minTranslate();
     const max = swiper.maxTranslate();
     const current = (max - min) * progress + min;
 
     swiper.setTranslate(current);
-    swiper.updateProgress(current);
     swiper.updateActiveIndex();
     swiper.updateSlidesClasses();
   }
@@ -37,35 +40,37 @@ export default function initDoctors(selector = ".vi-doctors") {
   const mm = gsap.matchMedia();
 
   mm.add("(min-width: 768px)", () => {
-
-    // Important: update swiper before measuring
     swiper.update();
 
     const st = ScrollTrigger.create({
       trigger: el,
       start: "center center",
-      end: () => "+=" + slider.scrollWidth,
+      end: () => "+=" + el.scrollWidth * 2.5,
       scrub: true,
       pin: true,
       invalidateOnRefresh: true,
-      onUpdate: self => updateByProgress(self.progress),
+      onUpdate: (self) => updateByProgress(self.progress),
     });
 
-    // VERY important for resize
-    ScrollTrigger.refresh();
-
+    // Cleanup when leaving breakpoint
     return () => {
-      st.kill(true);
-
+      st.kill();
       swiper.setTranslate(0);
       swiper.update();
     };
   });
 
-  // Global resize safety
+  // Handle resize safely
+  let resizeTimer;
   window.addEventListener("resize", () => {
-    swiper.update();
-    ScrollTrigger.refresh();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (swiper && !swiper.destroyed) {
+        swiper.destroy(true, true);
+      }
+      swiper = createSwiper();
+      ScrollTrigger.refresh();
+    }, 200);
   });
 
   return swiper;

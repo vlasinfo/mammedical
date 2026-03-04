@@ -17,12 +17,15 @@
 
   &__slide {
     flex-shrink: 0;
-
-    // user-select: none;
-    // pointer-events: none;   
+    max-width: 200px;
+    
+    @include mq(min, xl) {
+      max-width: 300px;
+    } 
   }
 
 
+  
 }
 
 .doctors-card {
